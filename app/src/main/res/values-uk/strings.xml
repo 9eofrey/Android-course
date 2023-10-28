@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">homework 1</string>
+    <string name="settings">Налаштування</string>
+    <string name="view_my_contacts">Переглянути мої контакти</string>
+    <string name="edit_profile">Редагувати профіль</string>
+    <string name="job">графічний дизайнер</string>
+    <string name="profile_name">Люсі Авакардо</string>
+    <string name="adress">5295 gaylord Street 23</string>
+</resources>

@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">homework 1</string>
+    <string name="settings">Settings</string>
+    <string name="view_my_contacts">View my contacts</string>
+    <string name="edit_profile">Edit profile</string>
+    <string name="job">graphic designer</string>
+    <string name="profile_name">Lucie Avacardo</string>
+    <string name="adress">5295 gaylord Street 23</string>
+</resources>

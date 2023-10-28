@@ -1,0 +1,14 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.Homework1" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Customize your light theme here. -->
+        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="android:statusBarColor">?attr/colorMainBackground</item>
+        <!-- my own colors-->
+        <item name="colorMainBackground">@color/main_background</item>
+        <item name="colorViewContactsButton">@color/view_contacts_button</item>
+
+    </style>
+
+    <style name="Theme.Homework1" parent="Base.Theme.Homework1" />
+</resources>
