@@ -6,4 +6,16 @@
     <string name="job">graphic designer</string>
     <string name="profile_name">Lucie Avacardo</string>
     <string name="adress">5295 gaylord Street 23</string>
+    <string name="greeting">Let\'s get acquainted</string>
+    <string name="instructions">Fill out the profile and go to the application!</string>
+    <string name="instructions_name_text">E-mail</string>
+    <string name="title_activity_auth" translatable="false">label</string>
+    <string name="first_fragment_label" translatable="false">label</string>
+    <string name="second_fragment_label" translatable="false"></string>
+    <string name="check_box_hint">remember me</string>
+    <string name="password_edit_text_hint">password</string>
+    <string name="register_button_text">register</string>
+
+
+    
 </resources>

@@ -74,7 +74,7 @@
 
             android:text="@string/profile_name"
 
-            android:textColor="#FAFAFA"
+            android:textColor="@color/white"
             android:textSize="23sp"
 
 
@@ -87,7 +87,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/about_profile_text"
-            android:textColor="#FAFAFA"
+            android:textColor="@color/white"
             android:text="@string/job"
             android:textSize="14sp"
             app:layout_constraintStart_toStartOf="parent"
@@ -106,7 +106,7 @@
             app:layout_constraintTop_toBottomOf="@id/about_profile_text"
 
             android:text="@string/adress"
-            android:textColor="#FAFAFA"
+            android:textColor="@color/white"
             android:textSize="14sp" />
 
 
