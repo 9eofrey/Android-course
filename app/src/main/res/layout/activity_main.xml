@@ -68,14 +68,13 @@
             android:id="@+id/profile_name_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/profile_image"
 
 
 
-            android:textColor="@color/white"
+            android:textColor="#FAFAFA"
             android:textSize="23sp"
 
 
@@ -84,20 +83,19 @@
 
             />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/about_profile_text"
-            android:textColor="@color/white"
-            android:text="@string/job"
-            android:textSize="14sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/profile_name_text"
+    <TextView
+        android:id="@+id/about_profile_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/job"
+        android:textColor="#FAFAFA"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/profile_name_text"
 
 
-
-            />
+        />
 
         <TextView
             android:layout_width="wrap_content"
@@ -107,7 +105,7 @@
             app:layout_constraintTop_toBottomOf="@id/about_profile_text"
 
             android:text="@string/adress"
-            android:textColor="@color/white"
+            android:textColor="#FAFAFA"
             android:textSize="14sp" />
 
 
@@ -188,7 +186,7 @@
            android:textAllCaps="true"
 
 
-           android:background="@color/view_contacts_button"
+           android:background="@drawable/frame_button_view_my_contacts"
            app:layout_constraintBottom_toBottomOf="parent"
            app:layout_constraintStart_toStartOf="parent"
            app:layout_constraintEnd_toEndOf="parent"
