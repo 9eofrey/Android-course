@@ -2,5 +2,9 @@
 <resources>
     <color name="main_background">#181723</color>
     <color name="view_contacts_button">#6C2A05</color>
+    <color name="white">#18181F</color>
+    <color name="black">#FAFAFA</color>
+
+
 
 </resources>

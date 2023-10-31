@@ -2,5 +2,6 @@
 <resources>
     <attr name="colorMainBackground" format="color"/>
     <attr name="colorViewContactsButton" format="color"/>
+    <attr name="colorEditTextName" format="color"/>
 
 </resources>

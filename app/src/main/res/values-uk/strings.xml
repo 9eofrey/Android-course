@@ -7,4 +7,11 @@
     <string name="job">графічний дизайнер</string>
     <string name="profile_name">Люсі Авакардо</string>
     <string name="adress">5295 gaylord Street 23</string>
+    <string name="greeting">Давайте знайомитися</string>
+    <string name="instructions">Заповніть данні профілю та увійдете в додаток!</string>
+    <string name="instructions_name_text">E-mail</string>
+    <string name="check_box_hint">Запам\'ятати мене</string>
+    <string name="password_edit_text_hint">Пароль</string>
+    <string name="register_button_text">зареєструватися</string>
+
 </resources>
