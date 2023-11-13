@@ -15,6 +15,7 @@
     <string name="check_box_hint">remember me</string>
     <string name="password_edit_text_hint">password</string>
     <string name="register_button_text">register</string>
+    <string name="log_out_button_text">log out</string>
 
 
     

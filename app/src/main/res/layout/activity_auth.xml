@@ -80,10 +80,11 @@
     </androidx.appcompat.widget.AppCompatEditText>
 
     <androidx.appcompat.widget.AppCompatCheckBox
-        android:id="@+id/checkbox"
+        android:id="@+id/remember_checkbox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:hint="@string/check_box_hint"
+        android:checked="false"
         android:textColorHint="@color/edit_text_name"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/password_edit_text"
