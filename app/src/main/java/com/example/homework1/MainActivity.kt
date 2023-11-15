@@ -1,32 +1,32 @@
 package com.example.homework1
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.text.InputFilter.AllCaps
 import android.widget.Button
-import android.widget.CheckBox
 import android.widget.TextView
+import java.util.Locale
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity() { // TODO: use binding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        var textuser = findViewById<TextView>(R.id.profile_name_text)
-        var logOutButton = findViewById<Button>(R.id.log_out_button)
 
-        val intent = intent.getStringExtra(Constants.username)
+        val email = intent.getStringExtra(Constants.username) ?: ""
+        setUserName(email)
+    }
 
+    private fun setUserName(email: String) {
+        var textuser = findViewById<TextView>(R.id.profile_name_text) // TODO: binding
 
-        val parsed = intent?.substringBefore("@")
-        val parsedName = intent?.substringBefore(".")?.capitalize()
-        val parsedSurname = parsed?.substringAfter(".")?.capitalize()
+        val elements = email.substringBefore("@").split(".")
+        val name = elements[0].substringBefore(".")
+            .replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString() }
+        val lastName = elements[1].substringAfter(".")
+            .replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString() }
 
-        val parsedAccountName = parsedName + " " + parsedSurname
+        val parsedAccountName = "$name $lastName"
 
         textuser.text = parsedAccountName
-
-
-
     }
+
 }

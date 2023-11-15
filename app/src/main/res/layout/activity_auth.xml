@@ -4,40 +4,33 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AuthActivity"
-    android:background="@color/main_background">
+    android:background="@color/main_background"
+    tools:context=".AuthActivity">
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/greeting_text"
+        android:id="@+id/textViewGreeting"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/greeting"
-        android:textSize="31sp"
-        app:layout_constraintStart_toStartOf="parent"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_31sp"
+        app:layout_constraintVertical_bias="0.2"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="178dp"
-        android:textColor="#FAFAFA"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-
-        >
-
-
-    </androidx.appcompat.widget.AppCompatTextView>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/instructions_text"
+        android:id="@+id/textViewInstructions"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/greeting_text"
+        android:layout_marginTop="8dp"
         android:text="@string/instructions"
         android:textColor="#FAFAFA"
-        android:layout_marginTop="8dp"
         android:textSize="16sp"
-        >
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textViewGreeting">
 
 
     </androidx.appcompat.widget.AppCompatTextView>
@@ -45,16 +38,16 @@
     <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/email_edit_text"
         android:layout_width="0dp"
+        android:layout_height="@dimen/email_height"
         android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_height="57dp"
-        android:textColor="#FAFAFA"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:hint="@string/instructions_name_text"
-        android:textColorHint="@color/edit_text_name"
-        app:layout_constraintTop_toBottomOf="@+id/instructions_text"
         android:layout_marginTop="24dp"
+        android:layout_marginEnd="16dp"
+        android:hint="@string/instructions_name_text"
+        android:textColor="#FAFAFA"
+        android:textColorHint="@color/edit_text_name"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewInstructions"
 
         >
 
@@ -63,16 +56,16 @@
     <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/password_edit_text"
         android:layout_width="0dp"
-        android:layout_height="57dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:textColor="#FAFAFA"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/email_edit_text"
+        android:layout_height="@dimen/email_height"
         android:layout_marginTop="16dp"
+        android:layout_marginHorizontal="16dp"
         android:hint="@string/password_edit_text_hint"
+        android:inputType="textPassword"
+        android:textColor="#FAFAFA"
         android:textColorHint="@color/edit_text_name"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/email_edit_text"
 
         >
 
@@ -83,16 +76,13 @@
         android:id="@+id/remember_checkbox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/normal_margin"
+        android:layout_marginTop="@dimen/normal_margin"
         android:hint="@string/check_box_hint"
-        android:checked="false"
         android:textColorHint="@color/edit_text_name"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/password_edit_text"
-        android:layout_marginTop="16dp"
-        android:layout_marginStart="16dp"
-        >
-
-
+        app:layout_constraintVertical_chainStyle="packed"
+        app:layout_constraintTop_toBottomOf="@id/password_edit_text">
 
 
     </androidx.appcompat.widget.AppCompatCheckBox>
@@ -101,15 +91,14 @@
         android:id="@+id/or_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="#FAFAFA"
-        android:text="or"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@id/register_button"
         android:layout_marginBottom="8dp"
-        app:layout_constraintStart_toStartOf="parent"
+        android:text="or"
+        android:textColor="#FAFAFA"
+        android:textSize="18sp"
+        app:layout_constraintTop_toBottomOf="@id/buttonGoogle"
+        app:layout_constraintBottom_toTopOf="@id/register_button"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="90dp"
-        >
+        app:layout_constraintStart_toStartOf="parent">
 
 
     </androidx.appcompat.widget.AppCompatTextView>
@@ -118,43 +107,40 @@
         android:id="@+id/register_button"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="@string/register_button_text"
+        android:layout_marginHorizontal="14dp"
         android:background="@drawable/frame_register_button"
+        android:text="@string/register_button_text"
         android:textColor="#FAFAFA"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginStart="14dp"
-        android:layout_marginEnd="14dp"
+        app:layout_constraintTop_toBottomOf="@id/or_text"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginBottom="90dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
 
         >
 
     </androidx.appcompat.widget.AppCompatButton>
 
     <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/buttonGoogle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="@drawable/button__3_"
-        android:text="Google"
-        android:textColor="@color/black"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/or_text"
-        android:layout_marginBottom="8dp"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/button__3_"
+        android:text="@string/google"
+        app:layout_constraintVertical_bias="0.85"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toTopOf="@+id/or_text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
 
         >
 
 
     </androidx.appcompat.widget.AppCompatButton>
-
-
-
-
-
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

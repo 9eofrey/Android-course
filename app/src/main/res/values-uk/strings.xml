@@ -14,5 +14,7 @@
     <string name="password_edit_text_hint">Пароль</string>
     <string name="register_button_text">зареєструватися</string>
     <string name="log_out_button_text">вийти</string>
+    <string name="email_error">поля повинні бути заповнені</string>
+    <string name="google">Google</string>
 
 </resources>
