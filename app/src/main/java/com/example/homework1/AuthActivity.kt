@@ -28,7 +28,7 @@ class AuthActivity : AppCompatActivity() {
     }
 
     private fun handleStartActivity() {
-        if (getDataOfRememberMe()) {
+        if (getDataFromRememberMe()) {
             val intent = Intent(this, MainActivity::class.java)
             intent.putExtra(Constants.username, getAcName())
             startActivity(intent)
@@ -40,7 +40,8 @@ class AuthActivity : AppCompatActivity() {
 
     }
 
-    private fun onRegisterUser() { // TODO: read about scope function with
+
+    private fun onRegisterUser() {
         // setting actions on click
         when {
             // checking validation
@@ -48,10 +49,9 @@ class AuthActivity : AppCompatActivity() {
                 getString(R.string.email_error)
 
             binding.passwordEditText.length() == 0 -> binding.passwordEditText.error =
-                "field should be filled"          // TODO: use resources
-
+                getString(R.string.password_error_field)
             binding.passwordEditText.length() < 8 -> binding.passwordEditText.error =
-                "password should be at least 8 symbols"
+               getString(R.string.password_error_length)
 
             else -> {
                 // putting data into MainActivity
@@ -68,7 +68,7 @@ class AuthActivity : AppCompatActivity() {
 
 
                 intent.putExtra(Constants.username, binding.emailEditText.text.toString())
-                // intent.putExtra(Constants.isChecked, isCheck) // TODO: need?
+
                 startActivity(intent)
             }
         }
@@ -85,7 +85,7 @@ class AuthActivity : AppCompatActivity() {
     private fun getAcName() = sharedPref.getString(KEY_NAME, " ")
 
 
-    private fun getDataOfRememberMe(): Boolean { // TODO: change name
+    private fun getDataFromRememberMe(): Boolean { // TODO: change name
         return sharedPref.getBoolean(keyBool, false)
     }
 

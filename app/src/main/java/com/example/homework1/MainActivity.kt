@@ -4,9 +4,13 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
+import com.example.homework1.databinding.ActivityMainBinding
 import java.util.Locale
 
 class MainActivity : AppCompatActivity() { // TODO: use binding
+    private val binding: ActivityMainBinding by lazy{
+        ActivityMainBinding.inflate(layoutInflater)
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -16,7 +20,7 @@ class MainActivity : AppCompatActivity() { // TODO: use binding
     }
 
     private fun setUserName(email: String) {
-        var textuser = findViewById<TextView>(R.id.profile_name_text) // TODO: binding
+        var textUser = findViewById<TextView>(R.id.profile_name_text) // TODO: binding(find a way to fix binding)
 
         val elements = email.substringBefore("@").split(".")
         val name = elements[0].substringBefore(".")
@@ -26,7 +30,7 @@ class MainActivity : AppCompatActivity() { // TODO: use binding
 
         val parsedAccountName = "$name $lastName"
 
-        textuser.text = parsedAccountName
+        textUser.text = parsedAccountName
     }
 
 }

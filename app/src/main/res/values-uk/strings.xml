@@ -14,7 +14,9 @@
     <string name="password_edit_text_hint">Пароль</string>
     <string name="register_button_text">зареєструватися</string>
     <string name="log_out_button_text">вийти</string>
-    <string name="email_error">поля повинні бути заповнені</string>
+    <string name="email_error">полe повинно бути заповнене</string>
+    <string name="password_error_field">поле повинно бути заповнене</string>
+    <string name="password_error_length">пароль повинен бути не менше 8 символів</string>
     <string name="google">Google</string>
 
 </resources>
