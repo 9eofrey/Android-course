@@ -5,14 +5,19 @@ import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.forlearn.Adapter
+import com.example.homework1.databinding.ActivityContactsBinding
+import com.example.homework1.databinding.ActivityMainBinding
 
 class ContactsActivity : AppCompatActivity() {
+    private val binding: ActivityContactsBinding by lazy{
+        ActivityContactsBinding.inflate(layoutInflater)
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_contacts)
+        setContentView(binding.root)
 
-        val recyclerView: RecyclerView = findViewById(R.id.recycleViewContacts)
-        recyclerView.layoutManager = LinearLayoutManager(this)
+        //val recyclerView: RecyclerView = findViewById(R.id.recycleViewContacts)
+        binding.recycleViewContacts.layoutManager = LinearLayoutManager(this)
 
 
 
@@ -33,7 +38,7 @@ class ContactsActivity : AppCompatActivity() {
         )
 
         val adapter = Adapter(items)
-        recyclerView.adapter = adapter
+        binding.recycleViewContacts.adapter = adapter
 
     }
 }

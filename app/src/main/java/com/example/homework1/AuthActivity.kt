@@ -85,7 +85,7 @@ class AuthActivity : AppCompatActivity() {
     private fun getAcName() = sharedPref.getString(KEY_NAME, " ")
 
 
-    private fun getDataFromRememberMe(): Boolean { // TODO: change name
+    private fun getDataFromRememberMe(): Boolean {
         return sharedPref.getBoolean(keyBool, false)
     }
 
