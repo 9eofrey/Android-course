@@ -4,24 +4,28 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
+import com.bumptech.glide.Glide
 import com.example.homework1.databinding.ActivityMainBinding
 import java.util.Locale
 
-class MainActivity : AppCompatActivity() { // TODO: use binding
+class MainActivity : AppCompatActivity() {
     private val binding: ActivityMainBinding by lazy{
         ActivityMainBinding.inflate(layoutInflater)
     }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(binding.root)
 
-        val email = intent.getStringExtra(Constants.username) ?: ""
+        val email = intent.getStringExtra(Constants.username) ?:""
         setUserName(email)
+        Glide.with(this)
+
+            .load("https://img.freepik.com/free-photo/the-red-or-white-cat-i-on-white-studio_155003-13189.jpg?size=626&ext=jpg&ga=GA1.1.1880011253.1699747200&semt=ais")
+            .centerCrop()
+            .into(binding.profileImage!!)
     }
 
     private fun setUserName(email: String) {
-        var textUser = findViewById<TextView>(R.id.profile_name_text) // TODO: binding(find a way to fix binding)
-
         val elements = email.substringBefore("@").split(".")
         val name = elements[0].substringBefore(".")
             .replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString() }
@@ -30,7 +34,8 @@ class MainActivity : AppCompatActivity() { // TODO: use binding
 
         val parsedAccountName = "$name $lastName"
 
-        textUser.text = parsedAccountName
+       binding.profileNameText!!.text = parsedAccountName
     }
+
 
 }
