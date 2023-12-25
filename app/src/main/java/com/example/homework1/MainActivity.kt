@@ -1,5 +1,6 @@
 package com.example.homework1
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
@@ -15,7 +16,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-
+        setListeners()
         val email = intent.getStringExtra(Constants.username) ?:""
         setUserName(email)
         Glide.with(this)
@@ -37,5 +38,14 @@ class MainActivity : AppCompatActivity() {
        binding.profileNameText!!.text = parsedAccountName
     }
 
+    private fun setListeners(){
+        binding.viewContactsButton?.setOnClickListener { intents() }
+
+
+    }
+    private fun intents(){
+        val intent = Intent(this, ContactsActivity::class.java)
+        startActivity(intent)
+    }
 
 }
