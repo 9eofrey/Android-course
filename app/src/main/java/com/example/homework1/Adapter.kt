@@ -2,6 +2,7 @@ package com.example.homework1
 
 import android.app.AlertDialog
 import android.content.Context
+import android.content.Intent
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -33,21 +34,17 @@ class Adapter(private val items: MutableList<Item>) : RecyclerView.Adapter<Adapt
         Log.d("bind", "binded viewholder with item $item")
         holder.avatarImageView.setImageResource(item.avatarResId)
         holder.textView.text = item.text
-        holder.deleteButton.setOnClickListener {
+        holder.deleteButton?.setOnClickListener {
             onDeleteViewHolder(position, holder)
         }
-       
-
-
 
     }
 
-
-
     private fun onDeleteViewHolder(position: Int, holder: ViewHolder) {
+        notifyItemRemoved(position)
         items.removeAt(position)
         Toast.makeText(holder.itemView.context, "contact deleted", Toast.LENGTH_SHORT).show()
-        notifyItemChanged(itemCount)
+
     }
 
 
@@ -61,9 +58,10 @@ class Adapter(private val items: MutableList<Item>) : RecyclerView.Adapter<Adapt
         val avatarImageView: ImageView = itemView.findViewById(R.id.avatarImageView)
         val textView: TextView = itemView.findViewById(R.id.avatarTextView)
         val deleteButton = itemView.findViewById<AppCompatButton>(R.id.button_remove_contact)
-       val nameText = itemView.findViewById<AppCompatEditText>(R.id.edit_text_username)
+        val nameText = itemView.findViewById<AppCompatEditText>(R.id.edit_text_username)
         val saveButton = itemView.findViewById<AppCompatButton>(R.id.button_save_contact)
 
     }
 
 }
+

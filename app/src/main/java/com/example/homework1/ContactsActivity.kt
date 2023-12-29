@@ -3,6 +3,7 @@ package com.example.homework1
 import android.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.widget.AppCompatButton
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -30,33 +31,40 @@ class ContactsActivity : AppCompatActivity() {
 
 
 
-        val items = mutableListOf(
-            Item(R.drawable.ic_launcher_background, "John"),
-            Item(R.drawable.ic_launcher_background, "John"),
-            Item(R.drawable.ic_launcher_background, "John"),
-            Item(R.drawable.ic_launcher_background, "John"),
-            Item(R.drawable.ic_launcher_background, "John"),
-            Item(R.drawable.ic_launcher_background, "John"),
-            Item(R.drawable.ic_launcher_background, "John"),
-            Item(R.drawable.ic_launcher_background, "John"),
-            Item(R.drawable.ic_launcher_background, "John"),
-            Item(R.drawable.ic_launcher_background, "John"),
-            Item(R.drawable.ic_launcher_background, "John"),
-            Item(R.drawable.ic_launcher_background, "John")
-
-        )
+        val items = listOf(Item(R.drawable.ic_launcher_background,"Petro")).toMutableList()
 
 
         val adapter = Adapter(items)
-        binding.buttonAddContact.setOnClickListener { OnCreateContact()  }
+
+
+        binding.buttonAddContact.setOnClickListener {
+            val view = layoutInflater.inflate(R.layout.alert_dialog, null)
+            val dialog = AlertDialog.Builder(this).setView(view).show()
+
+
+
+        }
+
+        alertBinding.buttonSaveContact.setOnClickListener {
+            Log.d("clicked","clicked")
+            saveContact(items)
+        }
+
+
+
+
+
         binding.recycleViewContacts.adapter = adapter
 
 
 
-    }
 
-    fun OnCreateContact(){
-        val builder = AlertDialog.Builder(this).setView(alertBinding.root).show()
+    }
+    fun saveContact(items:MutableList<Item>){
+        items.add(Item(R.drawable.ic_launcher_background,alertBinding.editTextUsername.text.toString()))
+      val position=   items.indexOfLast { Item->true }
+        binding.recycleViewContacts.adapter?.notifyItemInserted(position)
+
     }
 
 
