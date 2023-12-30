@@ -16,9 +16,7 @@ class ContactsActivity : AppCompatActivity() {
     private val binding: ActivityContactsBinding by lazy{
         ActivityContactsBinding.inflate(layoutInflater)
     }
-    private val alertBinding: AlertDialogBinding by lazy{
-        AlertDialogBinding.inflate(layoutInflater)
-    }
+    private lateinit var alertBinding: AlertDialogBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,15 +38,17 @@ class ContactsActivity : AppCompatActivity() {
         binding.buttonAddContact.setOnClickListener {
             val view = layoutInflater.inflate(R.layout.alert_dialog, null)
             val dialog = AlertDialog.Builder(this).setView(view).show()
-
+            alertBinding = AlertDialogBinding.bind(view)
+            alertBinding.buttonSaveContact.setOnClickListener {
+                Log.d("clicked","clicked")
+                saveContact(items)
+                dialog.cancel()
+            }
 
 
         }
 
-        alertBinding.buttonSaveContact.setOnClickListener {
-            Log.d("clicked","clicked")
-            saveContact(items)
-        }
+
 
 
 
@@ -63,7 +63,7 @@ class ContactsActivity : AppCompatActivity() {
     fun saveContact(items:MutableList<Item>){
         items.add(Item(R.drawable.ic_launcher_background,alertBinding.editTextUsername.text.toString()))
       val position=   items.indexOfLast { Item->true }
-        binding.recycleViewContacts.adapter?.notifyItemInserted(position)
+        binding.recycleViewContacts?.adapter?.notifyItemInserted(position)
 
     }
 
