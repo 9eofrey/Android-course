@@ -29,7 +29,7 @@ class ContactsActivity : AppCompatActivity() {
 
 
 
-        val items = listOf(Item(R.drawable.ic_launcher_background,"Petro")).toMutableList()
+        val items = emptyList<Item>().toMutableList()
 
 
         val adapter = Adapter(items)

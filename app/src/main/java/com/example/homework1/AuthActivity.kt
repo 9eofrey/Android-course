@@ -1,10 +1,20 @@
 package com.example.homework1
 
+import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
+import android.graphics.Canvas
+import android.graphics.Color
+import android.graphics.Paint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.AttributeSet
+import android.view.View
+import android.view.ViewGroup
+import android.widget.Button
+import androidx.appcompat.widget.AppCompatButton
 import com.example.homework1.databinding.ActivityAuthBinding
+import org.w3c.dom.Text
 
 const val KEY_NAME = "ac_name"
 const val keyPass = "ac_pass"
@@ -92,4 +102,33 @@ class AuthActivity : AppCompatActivity() {
     private fun getAcPass(): String? {
         return sharedPref.getString(keyPass, " ")
     }
+
+  class CustomButton(context: Context, attrs:AttributeSet):AppCompatButton(context,attrs){
+      val paint = Paint()
+      init{
+          paint.style= Paint.Style.FILL
+          paint.color = Color.WHITE
+
+      }
+      override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
+          super.onMeasure(widthMeasureSpec, heightMeasureSpec)
+          val width =  MeasureSpec.getSize(widthMeasureSpec)
+          val height = MeasureSpec.getSize(heightMeasureSpec)
+          super.setMeasuredDimension(width,height)
+
+      }
+
+      override fun onDraw(canvas: Canvas) {
+          super.onDraw(canvas)
+          canvas.drawRect(12.2f,12.2f,12.2f,12.2f,paint)
+
+      }
+
+
+
+
+
+
+  }
+
 }

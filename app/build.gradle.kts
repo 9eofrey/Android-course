@@ -47,6 +47,23 @@ dependencies {
     implementation ("com.github.bumptech.glide:glide:4.14.2")
     implementation("androidx.navigation:navigation-fragment-ktx:2.7.5")
     implementation("androidx.navigation:navigation-ui-ktx:2.7.5")
+    // Import the BoM for the Firebase platform
+
+
+    // Add the dependency for the Firebase Authentication library
+    // When using the BoM, you don't specify versions in Firebase library dependencies
+
+
+    // Also add the dependency for the Google Play services library and specify its version
+
+
+    // optional - needed for credentials support from play services, for devices running
+    // Android 13 and below.
+
+
+    // optional - needed for credentials support from play services, for devices running
+    // Android 13 and below.
+
 
 }
 
