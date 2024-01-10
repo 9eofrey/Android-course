@@ -108,19 +108,21 @@ class AuthActivity : AppCompatActivity() {
       init{
           paint.style= Paint.Style.FILL
           paint.color = Color.WHITE
+          
 
       }
       override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
           super.onMeasure(widthMeasureSpec, heightMeasureSpec)
           val width =  MeasureSpec.getSize(widthMeasureSpec)
           val height = MeasureSpec.getSize(heightMeasureSpec)
+
           super.setMeasuredDimension(width,height)
 
       }
 
       override fun onDraw(canvas: Canvas) {
           super.onDraw(canvas)
-          canvas.drawRect(12.2f,12.2f,12.2f,12.2f,paint)
+          canvas.drawRect(5.2f,5.2f,5.2f,5.2f,paint)
 
       }
 
