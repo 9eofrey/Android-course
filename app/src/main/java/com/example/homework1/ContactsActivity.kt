@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.widget.AppCompatButton
+import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.homework1.Adapter
@@ -60,11 +61,16 @@ class ContactsActivity : AppCompatActivity() {
 
 
     }
-    fun saveContact(items:MutableList<Item>){
+   private fun saveContact(items:MutableList<Item>){
         items.add(Item(R.drawable.ic_launcher_background,alertBinding.editTextUsername.text.toString()))
       val position=   items.indexOfLast { Item->true }
         binding.recycleViewContacts?.adapter?.notifyItemInserted(position)
 
+    }
+    fun startF(){
+        val fragment =ContactInfoFragment()
+        val fm: FragmentManager =supportFragmentManager
+            fm.beginTransaction().add(R.id.contacts_layout,fragment).commit()
     }
 
 

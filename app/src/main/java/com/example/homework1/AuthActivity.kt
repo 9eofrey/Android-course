@@ -13,6 +13,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import androidx.appcompat.widget.AppCompatButton
+
 import com.example.homework1.databinding.ActivityAuthBinding
 import org.w3c.dom.Text
 
@@ -49,6 +50,7 @@ class AuthActivity : AppCompatActivity() {
         binding.registerButton.setOnClickListener { onRegisterUser() }
 
     }
+
 
 
     private fun onRegisterUser() {
