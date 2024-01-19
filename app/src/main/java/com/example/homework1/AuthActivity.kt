@@ -38,6 +38,7 @@ class AuthActivity : AppCompatActivity() {
         setListeners()
     }
 
+
     private fun handleStartActivity() {
         if (getDataFromRememberMe()) {
             val intent = Intent(this, MainActivity::class.java)
@@ -93,6 +94,7 @@ class AuthActivity : AppCompatActivity() {
             .putBoolean(keyBool, is_checked)
             .apply()
     }
+
 
     private fun getAcName() = sharedPref.getString(KEY_NAME, " ")
 

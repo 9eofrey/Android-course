@@ -68,9 +68,9 @@ class ContactsActivity : AppCompatActivity() {
 
     }
     fun startF(){
-        val fragment =ContactInfoFragment()
+        val fragment =ContactFragment()
         val fm: FragmentManager =supportFragmentManager
-            fm.beginTransaction().add(R.id.contacts_layout,fragment).commit()
+        fm.beginTransaction().add(R.id.contacts_layout,fragment).commit()
     }
 
 

@@ -85,7 +85,7 @@
 
     </androidx.appcompat.widget.AppCompatTextView>
 
- <androidx.appcompat.widget.AppCompatTextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/contact_profile_address"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
