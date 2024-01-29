@@ -3,26 +3,54 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/contactsActivity2">
-    <activity
-        android:id="@+id/contactsActivity2"
-        android:name="com.example.homework1.ContactsActivity"
-        android:label="activity_contacts"
-        tools:layout="@layout/activity_contacts" />
-    <action android:id="@+id/to_activity"
-        app:destination="@+id/contactFragment2">
-
-    </action>
+    app:startDestination="@id/authFragment">
     <fragment
-        android:id="@+id/contactFragment2"
+        android:id="@+id/authFragment"
+        android:name="com.example.homework1.AuthFragment"
+        android:label="fragment_auth"
+        tools:layout="@layout/fragment_auth" >
+        <action
+            android:id="@+id/action_authFragment_to_mainProfileFragment"
+            app:destination="@id/mainProfileFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/contactFragment"
         android:name="com.example.homework1.ContactFragment"
         android:label="ContactFragment"
         tools:layout="@layout/fragment_contact"
-        
         >
         <action
-            android:id="@+id/action_contactFragment2_to_contactsActivity2"
-            app:destination="@id/contactsActivity2" />
+            android:id="@+id/action_contactFragment_to_contactsListFragment"
+            app:destination="@id/contactsListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/mainProfileFragment"
+        android:name="com.example.homework1.MainProfileFragment"
+        android:label="fragment_main_profile"
+        tools:layout="@layout/fragment_main_profile" >
+        <action
+            android:id="@+id/action_mainProfileFragment_to_contactsListFragment"
+            app:destination="@id/contactsListFragment" />
+        <action
+            android:id="@+id/action_mainProfileFragment_to_authFragment"
+            app:destination="@id/authFragment" />
+        <argument
+            android:name="email"
+            app:argType="string">
+
+    </argument>
+
 
     </fragment>
+    <fragment
+        android:id="@+id/contactsListFragment"
+        android:name="com.example.homework1.ContactsListFragment"
+        android:label="fragment_contacts_list"
+        tools:layout="@layout/fragment_contacts_list" >
+        <action
+            android:id="@+id/action_contactsListFragment_to_contactFragment"
+            app:destination="@id/contactFragment" />
+
+    </fragment>
+
 </navigation>
