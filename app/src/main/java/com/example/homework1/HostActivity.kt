@@ -11,9 +11,10 @@ class HostActivity : AppCompatActivity() {
     private val binding: ActivityHostBinding by lazy{
         ActivityHostBinding.inflate(layoutInflater)
     }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_host)
+        setContentView(binding.root)
     }
 
     override fun onSupportNavigateUp(): Boolean {

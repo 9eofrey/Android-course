@@ -44,7 +44,7 @@ class AuthFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         binding.apply {
             registerButton.setOnClickListener {
-                val direction = AuthFragmentDirections.actionAuthFragmentToMainProfileFragment("gdfgfgdgd")
+                val direction = AuthFragmentDirections.actionAuthFragmentToMainProfileFragment(binding.emailEditText.text.toString())
                findNavController().navigate(direction)
             }
         }

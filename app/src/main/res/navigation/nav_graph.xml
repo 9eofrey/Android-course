@@ -22,6 +22,15 @@
         <action
             android:id="@+id/action_contactFragment_to_contactsListFragment"
             app:destination="@id/contactsListFragment" />
+        <argument
+            android:name="name"
+            app:argType="string" />
+        <argument
+            android:name="address"
+            app:argType="string" />
+        <argument
+            android:name="career"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/mainProfileFragment"

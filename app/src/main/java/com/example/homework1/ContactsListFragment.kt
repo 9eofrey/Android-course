@@ -20,6 +20,7 @@ class ContactsListFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
         binding = FragmentContactsListBinding.inflate(inflater,container,false)
         binding.recycleViewContacts.layoutManager =LinearLayoutManager(context)
         val items = mutableListOf<Item>(Item(R.drawable.ic_launcher_background,"Petro"))
@@ -33,9 +34,11 @@ class ContactsListFragment : Fragment() {
             val view = layoutInflater.inflate(R.layout.alert_dialog, null)
             val dialog = AlertDialog.Builder(context).setView(view).show()
             alertBinding = AlertDialogBinding.bind(view)
+
             alertBinding.buttonSaveContact.setOnClickListener {
                 Log.d("clicked","clicked")
                 saveContact(items)
+                val name = alertBinding.editTextUsername.text.toString()
                 dialog.cancel()
             }
         }
@@ -43,12 +46,26 @@ class ContactsListFragment : Fragment() {
 
         return binding.root
     }
-    private fun saveContact(items:MutableList<Item>){
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding.apply {
+
+        }
+    }
+    fun saveContact(items:MutableList<Item>){
         items.add(Item(R.drawable.ic_launcher_background,alertBinding.editTextUsername.text.toString()))
         val position=   items.indexOfLast { Item->true }
         binding.recycleViewContacts?.adapter?.notifyItemInserted(position)
 
+
     }
+
+
+
+
+
+
 
 
 }

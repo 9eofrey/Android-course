@@ -24,6 +24,7 @@ class MainProfileFragment : Fragment() {
     ): View? {
         binding = FragmentMainProfileBinding.inflate(inflater,container,false)
 
+
         binding.viewContactsButton.setOnClickListener {
             it.findNavController().navigate(R.id.action_mainProfileFragment_to_contactsListFragment)
         }
@@ -40,17 +41,17 @@ class MainProfileFragment : Fragment() {
 
 
 
-private fun setUserName(email: String) {
-    val elements = email.substringBefore("@").split(".")
-    val name = elements[0].substringBefore(".")
-        .replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString() }
-    val lastName = elements[1].substringAfter(".")
-        .replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString() }
-
-    val parsedAccountName = "$name $lastName"
-
-    binding.profileNameText!!.text = parsedAccountName
-}
+//private fun setUserName(email: String) {
+//    val elements = email.substringBefore("@").split(".")
+//    val name = elements[0].substringBefore(".")
+//        .replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString() }
+//    val lastName = elements[1].substringAfter(".")
+//        .replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString() }
+//
+//    val parsedAccountName = "$name $lastName"
+//
+//    binding.profileNameText!!.text = parsedAccountName
+//}
 
 
 }

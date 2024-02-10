@@ -5,11 +5,15 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.NavArgs
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.navArgs
 import com.example.homework1.databinding.FragmentContactBinding
 
 class ContactFragment : Fragment() {
     private lateinit var binding: FragmentContactBinding
+
+    private val args:ContactFragmentArgs by navArgs()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -17,10 +21,21 @@ class ContactFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentContactBinding.inflate(inflater,container,false)
         binding.navigateBackButton.setOnClickListener{
-            it.findNavController().navigate(R.id.action_contactFragment_to_contactsListFragment)
+            it.findNavController().popBackStack()
+
         }
 
+
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        binding.contactProfileAddress.text = args.address
+        binding.contactProfileJob.text=args.career
+        binding.contactProfileName.text=args.name
+
     }
 
 
