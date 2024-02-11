@@ -54,6 +54,7 @@ dependencies {
     implementation("androidx.navigation:navigation-ui-ktx:2.7.5")
     implementation("androidx.media3:media3-common:1.2.1")
     implementation("androidx.fragment:fragment-ktx:1.6.2")
+    implementation ("it.xabaras.android:recyclerview-swipedecorator:1.4")
 
 
 }

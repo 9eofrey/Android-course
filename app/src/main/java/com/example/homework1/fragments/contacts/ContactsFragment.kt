@@ -1,6 +1,7 @@
 package com.example.homework1.fragments.contacts
 
 import android.app.AlertDialog
+import android.graphics.Canvas
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -9,19 +10,23 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.homework1.Gesture
 import com.example.homework1.fragments.contacts.adapter.Adapter
 import com.example.homework1.model.Contact
 import com.example.homework1.R
 import com.example.homework1.databinding.AlertDialogBinding
 import com.example.homework1.databinding.FragmentContactsListBinding
+import it.xabaras.android.recyclerview.swipedecorator.RecyclerViewSwipeDecorator
 
 
 class ContactsFragment : Fragment() {
     private lateinit var binding: FragmentContactsListBinding
     private lateinit var alertBinding: AlertDialogBinding
     private val viewModel: ContactViewModel by viewModels()
-    lateinit var  adapter: Adapter
+    lateinit var adapter: Adapter
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -30,15 +35,16 @@ class ContactsFragment : Fragment() {
 
         binding = FragmentContactsListBinding.inflate(inflater, container, false)
         binding.recycleViewContacts.layoutManager = LinearLayoutManager(context)
-        val onDelete:(Int)->Unit = {position->
+        val onDelete: (Int) -> Unit = { position ->
             viewModel.deleteOnPosition(position)
         }
-        adapter = Adapter(viewModel.contacts.value!!,onDelete)
+        Gesture().getGesture(viewModel,binding)
+        adapter = Adapter(viewModel.contacts.value!!, onDelete)
         binding.recycleViewContacts.adapter = adapter
-
         binding.buttonBackNavigation.setOnClickListener {
             it.findNavController().popBackStack()
         }
+
         alertBinding = AlertDialogBinding.inflate(layoutInflater)
         binding.buttonAddContact.setOnClickListener {
             val view = layoutInflater.inflate(R.layout.alert_dialog, null)
@@ -65,6 +71,9 @@ class ContactsFragment : Fragment() {
     }
 
 
+
+
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.apply {
@@ -75,10 +84,8 @@ class ContactsFragment : Fragment() {
     }
 
     private fun setObservers() {
-        viewModel.contacts.observe(viewLifecycleOwner){
+        viewModel.contacts.observe(viewLifecycleOwner) {
             adapter.refreshData(it)
         }
     }
-
-
 }
