@@ -53,6 +53,7 @@ dependencies {
     implementation("androidx.navigation:navigation-fragment-ktx:2.7.5")
     implementation("androidx.navigation:navigation-ui-ktx:2.7.5")
     implementation("androidx.media3:media3-common:1.2.1")
+    implementation("androidx.fragment:fragment-ktx:1.6.2")
 
 
 }

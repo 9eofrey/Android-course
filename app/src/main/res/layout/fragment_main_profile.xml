@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainProfileFragment">
+    tools:context=".fragments.main.MainProfileFragment">
 
 
     <View
@@ -82,7 +82,7 @@
         android:background="@drawable/frame_log_out_button"
         android:text="@string/log_out_button_text"
         android:textAllCaps="false"
-        android:textColor="@color/edit_text_name"
+        android:textColor="@color/gray"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"

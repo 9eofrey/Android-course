@@ -43,7 +43,7 @@
         app:layout_constraintStart_toEndOf="@id/avatarImageView"
         app:layout_constraintTop_toBottomOf="@id/avatarTextView"
         android:layout_marginStart="16dp"
-        android:text="fgfdgfd"
+        android:text="test design"
         >
 
 

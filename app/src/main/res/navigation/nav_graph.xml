@@ -6,7 +6,7 @@
     app:startDestination="@id/authFragment">
     <fragment
         android:id="@+id/authFragment"
-        android:name="com.example.homework1.AuthFragment"
+        android:name="com.example.homework1.fragments.authentication.AuthFragment"
         android:label="fragment_auth"
         tools:layout="@layout/fragment_auth" >
         <action
@@ -15,13 +15,13 @@
     </fragment>
     <fragment
         android:id="@+id/contactFragment"
-        android:name="com.example.homework1.ContactFragment"
+        android:name="com.example.homework1.fragments.detailview.ContactDetailFragment"
         android:label="ContactFragment"
         tools:layout="@layout/fragment_contact"
         >
         <action
             android:id="@+id/action_contactFragment_to_contactsListFragment"
-            app:destination="@id/contactsListFragment" />
+            app:destination="@id/contactsFragment" />
         <argument
             android:name="name"
             app:argType="string" />
@@ -34,12 +34,12 @@
     </fragment>
     <fragment
         android:id="@+id/mainProfileFragment"
-        android:name="com.example.homework1.MainProfileFragment"
+        android:name="com.example.homework1.fragments.main.MainProfileFragment"
         android:label="fragment_main_profile"
         tools:layout="@layout/fragment_main_profile" >
         <action
             android:id="@+id/action_mainProfileFragment_to_contactsListFragment"
-            app:destination="@id/contactsListFragment" />
+            app:destination="@id/contactsFragment" />
         <action
             android:id="@+id/action_mainProfileFragment_to_authFragment"
             app:destination="@id/authFragment" />
@@ -52,8 +52,8 @@
 
     </fragment>
     <fragment
-        android:id="@+id/contactsListFragment"
-        android:name="com.example.homework1.ContactsListFragment"
+        android:id="@+id/contactsFragment"
+        android:name="com.example.homework1.fragments.contacts.ContactsFragment"
         android:label="fragment_contacts_list"
         tools:layout="@layout/fragment_contacts_list" >
         <action

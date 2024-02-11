@@ -1,19 +1,18 @@
-package com.example.homework1
+package com.example.homework1.fragments.detailview
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.NavArgs
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.homework1.databinding.FragmentContactBinding
 
-class ContactFragment : Fragment() {
+class ContactDetailFragment : Fragment() {
     private lateinit var binding: FragmentContactBinding
 
-    private val args:ContactFragmentArgs by navArgs()
+    private val args:ContactDetailFragmentArgs by navArgs()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

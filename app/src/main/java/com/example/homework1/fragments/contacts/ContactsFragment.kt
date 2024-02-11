@@ -1,4 +1,4 @@
-package com.example.homework1
+package com.example.homework1.fragments.contacts
 
 import android.app.AlertDialog
 import android.os.Bundle
@@ -7,25 +7,35 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.homework1.fragments.contacts.adapter.Adapter
+import com.example.homework1.model.Contact
+import com.example.homework1.R
 import com.example.homework1.databinding.AlertDialogBinding
 import com.example.homework1.databinding.FragmentContactsListBinding
 
 
-class ContactsListFragment : Fragment() {
+class ContactsFragment : Fragment() {
     private lateinit var binding: FragmentContactsListBinding
-    private lateinit var alertBinding:AlertDialogBinding
+    private lateinit var alertBinding: AlertDialogBinding
+    private val viewModel: ContactViewModel by viewModels()
+    lateinit var  adapter: Adapter
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
 
-        binding = FragmentContactsListBinding.inflate(inflater,container,false)
-        binding.recycleViewContacts.layoutManager =LinearLayoutManager(context)
-        val items = mutableListOf<Item>(Item(R.drawable.ic_launcher_background,"Petro"))
-        val adapter = Adapter(items)
+
+        binding = FragmentContactsListBinding.inflate(inflater, container, false)
+        binding.recycleViewContacts.layoutManager = LinearLayoutManager(context)
+        val onDelete:(Int)->Unit = {position->
+            viewModel.deleteOnPosition(position)
+        }
+        adapter = Adapter(viewModel.contacts.value!!,onDelete)
         binding.recycleViewContacts.adapter = adapter
+
         binding.buttonBackNavigation.setOnClickListener {
             it.findNavController().popBackStack()
         }
@@ -36,9 +46,16 @@ class ContactsListFragment : Fragment() {
             alertBinding = AlertDialogBinding.bind(view)
 
             alertBinding.buttonSaveContact.setOnClickListener {
-                Log.d("clicked","clicked")
-                saveContact(items)
-                val name = alertBinding.editTextUsername.text.toString()
+                Log.d("clicked", "clicked")
+                val contact = Contact(
+                    R.drawable.ic_launcher_background,
+                    alertBinding.editTextUsername.text.toString(),
+                    alertBinding.editTextCareer.text.toString(),
+                    alertBinding.editTextAddress.text.toString()
+                )
+                viewModel.addData(contact)
+
+
                 dialog.cancel()
             }
         }
@@ -47,25 +64,21 @@ class ContactsListFragment : Fragment() {
         return binding.root
     }
 
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.apply {
 
         }
-    }
-    fun saveContact(items:MutableList<Item>){
-        items.add(Item(R.drawable.ic_launcher_background,alertBinding.editTextUsername.text.toString()))
-        val position=   items.indexOfLast { Item->true }
-        binding.recycleViewContacts?.adapter?.notifyItemInserted(position)
-
+        setObservers()
 
     }
 
-
-
-
-
-
+    private fun setObservers() {
+        viewModel.contacts.observe(viewLifecycleOwner){
+            adapter.refreshData(it)
+        }
+    }
 
 
 }
