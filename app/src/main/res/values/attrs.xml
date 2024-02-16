@@ -4,4 +4,5 @@
     <attr name="colorViewContactsButton" format="color"/>
     <attr name="colorEditTextName" format="color"/>
 
+
 </resources>

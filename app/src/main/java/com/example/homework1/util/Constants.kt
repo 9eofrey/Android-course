@@ -1,9 +1,6 @@
-package com.example.homework1
+package com.example.homework1.util
 
 object Constants {
     const val username ="USERNAME"
-    const val isChecked ="BOOL"
-
-
     const val MY_PREFS = "main"
 }

@@ -4,5 +4,5 @@
     <color name="white">#FFFFFFFF</color>
     <color name="main_background">#242235</color>
     <color name="view_contacts_button">#FB5E06</color>
-    <color name="edit_text_name">#BDBDBD</color>
+    <color name="gray">#BDBDBD</color>
 </resources>
