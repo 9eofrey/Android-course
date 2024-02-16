@@ -1,3 +1,7 @@
 <resources>
     <dimen name="fab_margin">16dp</dimen>
+    <dimen name="_31sp">31sp</dimen>
+    <dimen name="email_height">57dp</dimen>
+    <dimen name="normal_margin">16dp</dimen>
+    <dimen name="_119dp">119dp</dimen>
 </resources>
