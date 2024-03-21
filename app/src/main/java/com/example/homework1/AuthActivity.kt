@@ -4,7 +4,10 @@ import android.content.Intent
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import androidx.activity.viewModels
 import com.example.homework1.databinding.ActivityAuthBinding
+import com.example.homework1.model.AuthViewModel
 
 const val KEY_NAME = "ac_name"
 const val keyPass = "ac_pass"
@@ -18,12 +21,13 @@ class AuthActivity : AppCompatActivity() {
     private val binding: ActivityAuthBinding by lazy {
         ActivityAuthBinding.inflate(layoutInflater)
     }
+    private val viewModel:AuthViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        handleStartActivity()
+       // handleStartActivity()
         setListeners()
     }
 
@@ -56,21 +60,27 @@ class AuthActivity : AppCompatActivity() {
             else -> {
                 // putting data into MainActivity
 
-                val intent = Intent(this, MainActivity::class.java)
-                if (binding.rememberCheckbox.isChecked) {
-                    saveData(
-                        binding.emailEditText.text.toString(),
-                        binding.passwordEditText.text.toString(),
-                        true
-                    )
-                    //Log.d("save data", "$isCheck")
+                    viewModel.email.value = "HELLO"
+                    Log.d("Tag2","value ${viewModel.email.value.toString()}")
+
+
+                val  intent = Intent(this, MainActivity::class.java)
+              //  intent.putExtra(binding.emailEditText.text.toString())
+                startActivity(intent)
+//                if (binding.rememberCheckbox.isChecked) {
+//                    saveData(
+//                        binding.emailEditText.text.toString(),
+//                        binding.passwordEditText.text.toString(),
+//                        true
+//                    )
+//                    //Log.d("save data", "$isCheck")
                 }
 
-
-                intent.putExtra(Constants.username, binding.emailEditText.text.toString())
-                // intent.putExtra(Constants.isChecked, isCheck) // TODO: need?
-                startActivity(intent)
-            }
+//
+               // intent.putExtra(Constants.username, binding.emailEditText.text.toString())
+              //   intent.putExtra(Constants.isChecked, isCheck) // TODO: need?
+               // startActivity(intent)
+           // }
         }
     }
 

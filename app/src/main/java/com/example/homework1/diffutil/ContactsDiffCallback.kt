@@ -1,4 +1,4 @@
-package com.example.homework1.fragments.contacts.diffutil
+package com.example.homework1.diffutil
 
 import androidx.recyclerview.widget.DiffUtil
 import com.example.homework1.model.Contact

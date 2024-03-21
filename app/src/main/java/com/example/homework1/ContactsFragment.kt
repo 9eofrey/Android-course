@@ -16,6 +16,7 @@ import com.example.homework1.model.Contact
 import com.example.homework1.ext.SwipeToDelete
 import com.example.homework1.databinding.AlertDialogBinding
 import com.example.homework1.databinding.FragmentContactsListBinding
+import com.example.homework1.databinding.ItemBinding
 import com.example.homework1.fragments.contacts.ItemClicks
 import com.example.homework1.model.ContactViewModel
 
@@ -24,8 +25,10 @@ class ContactsFragment : Fragment() {
     private lateinit var binding: FragmentContactsListBinding
     private lateinit var alertBinding: AlertDialogBinding
     private val viewModel: ContactViewModel by viewModels()
-    lateinit var Recadapter: Adapter
+    lateinit var recadapter: Adapter
     lateinit var navCont :NavController
+    lateinit var itemBinding:ItemBinding
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,9 +37,11 @@ class ContactsFragment : Fragment() {
 
 
         binding = FragmentContactsListBinding.inflate(inflater, container, false)
+        itemBinding = ItemBinding.inflate(layoutInflater)
         setListeners()
         setAdapter()
         setAlertDialog()
+
         navCont= findNavController()
         return binding.root
 
@@ -48,6 +53,7 @@ class ContactsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         setObservers()
 
     }
@@ -56,8 +62,13 @@ class ContactsFragment : Fragment() {
     }
 
     private fun setObservers() {
+
         viewModel.contacts.observe(viewLifecycleOwner) {
-            Recadapter.submitList(it)
+            recadapter.submitList(it)
+        }
+        viewModel.isSelected.observe(viewLifecycleOwner) {
+            Log.d("isMultiselect","Multiselect = $it")
+            recadapter.setMultiselect(it)
         }
     }
     private fun setListeners(){
@@ -75,9 +86,10 @@ class ContactsFragment : Fragment() {
             viewModel.deleteOnPosition(it)
         }
 
-        Recadapter = Adapter(object : ItemClicks {
+        recadapter = Adapter(object : ItemClicks {
             override fun onItemCLick(position:Int) {
-                //navCont.navigate(ContactsFragmentDirections.actionContactsListFragmentToContactFragment())
+                val directions = HostPagerFragmentDirections.actionHostPagerFragmentToContactDetailFragment()
+                findNavController().navigate(directions)
 
             }
 
@@ -86,8 +98,12 @@ class ContactsFragment : Fragment() {
 
             }
 
+            override fun onItemSelect(position: Int) {
+                viewModel.onItemLongClick(position)
+            }
+
         })
-        binding.recycleViewContacts.adapter = Recadapter
+        binding.recycleViewContacts.adapter = recadapter
 
     }
     private fun setAlertDialog() {
@@ -104,7 +120,9 @@ class ContactsFragment : Fragment() {
                     R.drawable.ic_launcher_background,
                     alertBinding.editTextUsername.text.toString(),
                     alertBinding.editTextAddress.text.toString(),
-                    alertBinding.editTextCareer.text.toString()
+                    alertBinding.editTextCareer.text.toString(),
+                    false
+                    
                 )
 
                 viewModel.addData(contact)

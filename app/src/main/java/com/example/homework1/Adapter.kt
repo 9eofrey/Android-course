@@ -1,51 +1,115 @@
 package com.example.homework1
 
 
+import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.homework1.model.Contact
 import com.example.homework1.databinding.ItemBinding
+import com.example.homework1.databinding.MultiselectItemBinding
 import com.example.homework1.ext.imageLibs
 import com.example.homework1.fragments.contacts.ItemClicks
-import com.example.homework1.fragments.contacts.diffutil.ContactsDiffCallback
+import com.example.homework1.diffutil.ContactsDiffCallback
 
+class Adapter(val listener: ItemClicks) : ListAdapter<Contact, Adapter.MainViewHolder>(
+    ContactsDiffCallback()
+) {
+    private var isSelected = false
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainViewHolder {
+        if (viewType == ViewHolderType.VIEWHOLDER.ordinal) {
+            val binding = ItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+            return ViewHolder(binding)
 
-class Adapter(val listener: ItemClicks) : ListAdapter<Contact, Adapter.ViewHolder>(ContactsDiffCallback()) {
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val binding = ItemBinding.inflate(LayoutInflater.from(parent.context),parent,false)
-        return ViewHolder(binding)
-    }
+        } else {
+            val binding =
+                MultiselectItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(getItem(position))
-
-
-
-    }
-
-
-    inner class ViewHolder(private val binding: ItemBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(contact: Contact) {
-            with(binding) {
-                // TODO add text and picture(with Glide)
-                buttonRemoveContact.setOnClickListener {
-                    listener.onDeleteItem(bindingAdapterPosition)
-
-                }
-                avatarTextView.text =contact.name
-                avatarImageView.imageLibs("https://static.thenounproject.com/png/3237155-200.png")
-                avatarCareer.text=contact.job
-                itemView.setOnClickListener {
-                    listener.onItemCLick(bindingAdapterPosition)
-                }
-
-            }
+            return MultiselectViewHolder(binding)
         }
 
     }
 
+    override fun onBindViewHolder(holder: MainViewHolder, position: Int) {
+        holder.bind(getItem(position))
+
+
+    }
+
+    override fun getItemViewType(position: Int): Int {
+        return if (isSelected) {
+            ViewHolderType.MULTISELECT_VIEWHOLDER.ordinal
+        } else {
+            ViewHolderType.VIEWHOLDER.ordinal
+        }
+    }
+
+    enum class ViewHolderType {
+        VIEWHOLDER,
+        MULTISELECT_VIEWHOLDER
+    }
+
+    fun setMultiselect(isSelected: Boolean) {
+        this.isSelected = isSelected
+    }
+
+    abstract inner class MainViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
+        abstract fun bind(contact: Contact)
+    }
+
+    inner class ViewHolder(private val binding: ItemBinding) : MainViewHolder(binding.root) {
+        override fun bind(contact: Contact) {
+
+            with(binding) {
+                // TODO add text and picture(with Glide)
+
+                buttonRemoveContact.setOnClickListener {
+                    listener.onDeleteItem(bindingAdapterPosition)
+
+                }
+                root.setOnClickListener{
+                    listener.onItemCLick(bindingAdapterPosition)
+                }
+
+                avatarTextView.text = contact.name
+                avatarImageView.imageLibs("https://svgsilh.com/svg/304080.svg")
+                avatarCareer.text = contact.job
+                itemView.setOnLongClickListener{
+                    listener.onItemSelect(bindingAdapterPosition)
+                    Log.d("isMultiselect","Clicked")
+                    true
+                }
+
+            }
+
+        }
+
+
+    }
+
+    inner class MultiselectViewHolder(val itemBinding: MultiselectItemBinding) :
+        MainViewHolder(itemBinding.root) {
+        override fun bind(contact: Contact) {
+
+            with(itemBinding) {
+                // TODO add text and picture(with Glide)
+
+                buttonRemoveContact.setOnClickListener {
+                    listener.onDeleteItem(bindingAdapterPosition)
+
+                }
+
+                avatarTextView.text = contact.name
+                avatarImageView.imageLibs("https://svgsilh.com/svg/304080.svg")
+                avatarCareer.text = contact.job
+                itemView.setOnLongClickListener { listener.onItemSelect(bindingAdapterPosition);true }
+
+            }
+
+        }
+    }
 
 }
 
