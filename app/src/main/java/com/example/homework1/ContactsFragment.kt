@@ -66,9 +66,9 @@ class ContactsFragment : Fragment() {
         viewModel.contacts.observe(viewLifecycleOwner) {
             recadapter.submitList(it)
         }
-        viewModel.isSelected.observe(viewLifecycleOwner) {
+        viewModel.isSelectedModeOn.observe(viewLifecycleOwner) {
             Log.d("isMultiselect","Multiselect = $it")
-            recadapter.setMultiselect(it)
+            recadapter.setMultiselectMode(it)
         }
     }
     private fun setListeners(){
@@ -98,8 +98,17 @@ class ContactsFragment : Fragment() {
 
             }
 
-            override fun onItemSelect(position: Int) {
+            override fun onSelectionMode(position: Int) {
                 viewModel.onItemLongClick(position)
+            }
+
+            override fun onClickSelection(position: Int) {
+                viewModel.onItemClickSelect(position)
+
+            }
+
+            override fun onClickDeselection(position: Int) {
+                viewModel.onItemClickDeselect(position)
             }
 
         })

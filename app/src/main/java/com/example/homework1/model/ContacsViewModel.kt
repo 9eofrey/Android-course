@@ -6,17 +6,39 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.homework1.R
 
-class ContactViewModel:ViewModel() {
+class ContactViewModel : ViewModel() {
 
 
-    private val _contacts =MutableLiveData(listOf<Contact>())
+    private val _contacts = MutableLiveData(listOf<Contact>())
     val contacts: LiveData<List<Contact>> = _contacts
-    private val _isSelected =MutableLiveData(false)
-    val isSelected: LiveData<Boolean> = _isSelected
+    private val _isSelectedModeOn = MutableLiveData(false)
+    val isSelectedModeOn: LiveData<Boolean> = _isSelectedModeOn
+
 
     init {
-        _contacts.value = listOf(Contact(R.drawable.ic_launcher_background,"Anna","23","designer",false))
+        _contacts.value =
+            listOf(Contact(
+               avatarResId = 1552,
+                "Anna",
+                "23",
+                "designer",
+                false),
+                Contact(
+                    avatarResId = 1415,
+                    name = "Katara",
+                    address = "Ramin",
+                    job = "Abigail",
+                    isChecked = false
+                ), Contact(
+                    avatarResId = 7952,
+                    name = "Reno",
+                    address = "Audrina",
+                    job = "Towanda",
+                    isChecked = false
+                )
+            )
     }
+
     fun addData(contact: Contact) {
         val list = _contacts.value?.toMutableList()
         list?.add(contact)
@@ -31,23 +53,37 @@ class ContactViewModel:ViewModel() {
     }
 
     fun onItemLongClick(position: Int) {
-        _isSelected.value = true
-        Log.d("isMultiselect","OnItemSelected(before) = ${_contacts.value?.get(position)}")
-
-
+        _isSelectedModeOn.value = true
         _contacts.value = _contacts.value?.toMutableList().apply {
-           this?.get(position)?.let {
-               this[position] =  it.copy(isChecked = true)
+            this?.get(position)?.let {
+                this[position] = it.copy(isChecked = true)
 
-           }
+            }
         }
+       // Log.d("isMultiselect", "OnItemSelected(before) = ${_contacts.value?.get(position)}")
+     //   onItemClickSelect(position)
+      //  Log.d("isMultiselect", "OnItemSelected(after) = ${_contacts.value}")
+    }
+    fun onItemClickSelect(position: Int){
+                _contacts.value = _contacts.value?.toMutableList().apply {
+            this?.get(position)?.let {
+                this[position] = it.copy(isChecked = true)
 
-        Log.d("isMultiselect","OnItemSelected(after) = ${_contacts.value}")
+            }
+          }
+    }
+    fun onItemClickDeselect(position: Int){
+        _contacts.value = _contacts.value?.toMutableList().apply {
+            this?.get(position)?.let {
+                this[position] = it.copy(isChecked = false)
 
+            }
+        }
     }
 
-    fun getContact(position: Int):Contact {
-        return contacts.value?.get(position)?: Contact(
+
+    fun getContact(position: Int): Contact {
+        return contacts.value?.get(position) ?: Contact(
             avatarResId = 4475,
             name = "Rami",
             address = "Niketa",
@@ -55,6 +91,6 @@ class ContactViewModel:ViewModel() {
             isChecked = true
         )
     }
-
-
 }
+
+

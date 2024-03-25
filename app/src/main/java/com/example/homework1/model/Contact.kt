@@ -10,3 +10,5 @@ data class Contact(
     val job: String,
     val isChecked:Boolean = false
     )
+
+

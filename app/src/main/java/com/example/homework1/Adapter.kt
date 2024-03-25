@@ -17,18 +17,23 @@ import com.example.homework1.diffutil.ContactsDiffCallback
 class Adapter(val listener: ItemClicks) : ListAdapter<Contact, Adapter.MainViewHolder>(
     ContactsDiffCallback()
 ) {
-    private var isSelected = false
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainViewHolder {
-        if (viewType == ViewHolderType.VIEWHOLDER.ordinal) {
-            val binding = ItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-            return ViewHolder(binding)
+    private var isSelectionOn:Boolean = false
+    private var isContactSelected = false
 
-        } else {
+
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainViewHolder {
+        return if (viewType == ViewHolderType.VIEWHOLDER.ordinal) {
+            val binding = ItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+            ViewHolder(binding)
+
+        } else  {
             val binding =
                 MultiselectItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
 
-            return MultiselectViewHolder(binding)
+            MultiselectViewHolder(binding)
         }
+
 
     }
 
@@ -39,8 +44,9 @@ class Adapter(val listener: ItemClicks) : ListAdapter<Contact, Adapter.MainViewH
     }
 
     override fun getItemViewType(position: Int): Int {
-        return if (isSelected) {
+        return if (isSelectionOn) {
             ViewHolderType.MULTISELECT_VIEWHOLDER.ordinal
+
         } else {
             ViewHolderType.VIEWHOLDER.ordinal
         }
@@ -51,9 +57,10 @@ class Adapter(val listener: ItemClicks) : ListAdapter<Contact, Adapter.MainViewH
         MULTISELECT_VIEWHOLDER
     }
 
-    fun setMultiselect(isSelected: Boolean) {
-        this.isSelected = isSelected
+    fun setMultiselectMode(Selection: Boolean) {
+       isSelectionOn = Selection
     }
+
 
     abstract inner class MainViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
         abstract fun bind(contact: Contact)
@@ -76,8 +83,8 @@ class Adapter(val listener: ItemClicks) : ListAdapter<Contact, Adapter.MainViewH
                 avatarTextView.text = contact.name
                 avatarImageView.imageLibs("https://svgsilh.com/svg/304080.svg")
                 avatarCareer.text = contact.job
-                itemView.setOnLongClickListener{
-                    listener.onItemSelect(bindingAdapterPosition)
+                root.setOnLongClickListener{
+                    listener.onSelectionMode(bindingAdapterPosition)
                     Log.d("isMultiselect","Clicked")
                     true
                 }
@@ -89,7 +96,7 @@ class Adapter(val listener: ItemClicks) : ListAdapter<Contact, Adapter.MainViewH
 
     }
 
-    inner class MultiselectViewHolder(val itemBinding: MultiselectItemBinding) :
+    inner class MultiselectViewHolder(private val itemBinding: MultiselectItemBinding) :
         MainViewHolder(itemBinding.root) {
         override fun bind(contact: Contact) {
 
@@ -104,7 +111,25 @@ class Adapter(val listener: ItemClicks) : ListAdapter<Contact, Adapter.MainViewH
                 avatarTextView.text = contact.name
                 avatarImageView.imageLibs("https://svgsilh.com/svg/304080.svg")
                 avatarCareer.text = contact.job
-                itemView.setOnLongClickListener { listener.onItemSelect(bindingAdapterPosition);true }
+                if (isSelectionOn){
+                    if (isContactSelected){
+                        itemView.setOnClickListener {
+                            isContactSelected =false
+                            listener.onClickDeselection(bindingAdapterPosition)
+                            isCheckedItem.visibility =View.GONE
+                        }
+                    }else{
+                        itemView.setOnClickListener {
+                            isContactSelected =true
+                            listener.onClickSelection(bindingAdapterPosition)
+                            isCheckedItem.visibility =View.VISIBLE
+
+                        }
+                   }
+
+
+
+                }
 
             }
 
