@@ -17,9 +17,7 @@ import com.example.homework1.diffutil.ContactsDiffCallback
 class Adapter(val listener: ItemClicks) : ListAdapter<Contact, Adapter.MainViewHolder>(
     ContactsDiffCallback()
 ) {
-    private var isSelectionOn:Boolean = false
-    private var isContactSelected = false
-
+    private var isSelectionOn: Boolean = false
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainViewHolder {
@@ -27,7 +25,7 @@ class Adapter(val listener: ItemClicks) : ListAdapter<Contact, Adapter.MainViewH
             val binding = ItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
             ViewHolder(binding)
 
-        } else  {
+        } else {
             val binding =
                 MultiselectItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
 
@@ -47,6 +45,7 @@ class Adapter(val listener: ItemClicks) : ListAdapter<Contact, Adapter.MainViewH
         return if (isSelectionOn) {
             ViewHolderType.MULTISELECT_VIEWHOLDER.ordinal
 
+
         } else {
             ViewHolderType.VIEWHOLDER.ordinal
         }
@@ -58,7 +57,7 @@ class Adapter(val listener: ItemClicks) : ListAdapter<Contact, Adapter.MainViewH
     }
 
     fun setMultiselectMode(Selection: Boolean) {
-       isSelectionOn = Selection
+        isSelectionOn = Selection
     }
 
 
@@ -76,16 +75,16 @@ class Adapter(val listener: ItemClicks) : ListAdapter<Contact, Adapter.MainViewH
                     listener.onDeleteItem(bindingAdapterPosition)
 
                 }
-                root.setOnClickListener{
+                root.setOnClickListener {
                     listener.onItemCLick(bindingAdapterPosition)
                 }
 
                 avatarTextView.text = contact.name
                 avatarImageView.imageLibs("https://svgsilh.com/svg/304080.svg")
                 avatarCareer.text = contact.job
-                root.setOnLongClickListener{
+                root.setOnLongClickListener {
                     listener.onSelectionMode(bindingAdapterPosition)
-                    Log.d("isMultiselect","Clicked")
+                    Log.d("isMultiselect", "Clicked")
                     true
                 }
 
@@ -108,27 +107,23 @@ class Adapter(val listener: ItemClicks) : ListAdapter<Contact, Adapter.MainViewH
 
                 }
 
+
                 avatarTextView.text = contact.name
                 avatarImageView.imageLibs("https://svgsilh.com/svg/304080.svg")
                 avatarCareer.text = contact.job
-                if (isSelectionOn){
-                    if (isContactSelected){
-                        itemView.setOnClickListener {
-                            isContactSelected =false
-                            listener.onClickDeselection(bindingAdapterPosition)
-                            isCheckedItem.visibility =View.GONE
-                        }
-                    }else{
-                        itemView.setOnClickListener {
-                            isContactSelected =true
-                            listener.onClickSelection(bindingAdapterPosition)
-                            isCheckedItem.visibility =View.VISIBLE
+                if (isSelectionOn) {
+                    itemView.setOnClickListener {
+                        if (isCheckedItem.visibility == View.GONE) {
+                            isCheckedItem.visibility = View.VISIBLE
+                        } else {
+                            isCheckedItem.visibility = View.GONE
+
 
                         }
+                    }
+                   buttonRemoveContact.setOnClickListener {
+                       listener.onDeleteMultipleItems()
                    }
-
-
-
                 }
 
             }

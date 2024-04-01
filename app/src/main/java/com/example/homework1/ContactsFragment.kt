@@ -111,6 +111,10 @@ class ContactsFragment : Fragment() {
                 viewModel.onItemClickDeselect(position)
             }
 
+            override fun onDeleteMultipleItems() {
+                viewModel.onDeleteSelectedItems()
+            }
+
         })
         binding.recycleViewContacts.adapter = recadapter
 

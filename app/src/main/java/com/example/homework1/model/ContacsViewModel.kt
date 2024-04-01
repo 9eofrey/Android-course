@@ -35,7 +35,58 @@ class ContactViewModel : ViewModel() {
                     address = "Audrina",
                     job = "Towanda",
                     isChecked = false
-                )
+                ),
+                Contact(
+                    avatarResId = 7952,
+                    name = "Reno",
+                    address = "Audrina",
+                    job = "Towanda",
+                    isChecked = false
+                ),
+                Contact(
+                    avatarResId = 7952,
+                    name = "Reno",
+                    address = "Audrina",
+                    job = "Towanda",
+                    isChecked = false
+                ),
+                Contact(
+                    avatarResId = 7952,
+                    name = "Reno",
+                    address = "Audrina",
+                    job = "Towanda",
+                    isChecked = false
+                ),
+                Contact(
+                    avatarResId = 7952,
+                    name = "Reno",
+                    address = "Audrina",
+                    job = "Towanda",
+                    isChecked = false
+                ),
+                Contact(
+                    avatarResId = 7952,
+                    name = "Reno",
+                    address = "Audrina",
+                    job = "Towanda",
+                    isChecked = false
+                ),
+                Contact(
+                    avatarResId = 7952,
+                    name = "Reno",
+                    address = "Audrina",
+                    job = "Towanda",
+                    isChecked = false
+                ),
+                Contact(
+                    avatarResId = 7952,
+                    name = "Reno",
+                    address = "Audrina",
+                    job = "Towanda",
+                    isChecked = false
+                ),
+
+
             )
     }
 
@@ -80,6 +131,17 @@ class ContactViewModel : ViewModel() {
             }
         }
     }
+
+fun onDeleteSelectedItems(){
+   val list = emptyList<Contact>().toMutableList()
+   for(i in _contacts.value!! ) {
+       if (i.isChecked) {
+           list.add(i)
+       }
+   }
+    list.removeAll(list)
+    _contacts.value =list
+}
 
 
     fun getContact(position: Int): Contact {

@@ -7,4 +7,6 @@ interface ItemClicks {
     fun onSelectionMode(position: Int)
     fun onClickSelection(position: Int)
     fun onClickDeselection(position: Int)
+    fun onDeleteMultipleItems()
+
 }
