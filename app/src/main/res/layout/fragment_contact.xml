@@ -56,7 +56,6 @@
         app:layout_constraintBottom_toBottomOf="@id/viewTop"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:background="@color/white_for_text"
         />
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/contact_profile_name"

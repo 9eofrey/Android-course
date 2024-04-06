@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import com.example.homework1.databinding.FragmentHostPagerBinding
 import com.google.android.material.tabs.TabLayoutMediator
 
@@ -20,9 +21,7 @@ class HostPagerFragment : Fragment() {
         return binding.root
     }
 
-    fun onNavigateToContact(){
-        Log.d("Mytag","navigate in viewpager")
-    }
+
 
 
 

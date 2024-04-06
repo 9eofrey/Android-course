@@ -31,21 +31,14 @@ class Adapter(val listener: ItemClicks) : ListAdapter<Contact, Adapter.MainViewH
 
             MultiselectViewHolder(binding)
         }
-
-
     }
-
     override fun onBindViewHolder(holder: MainViewHolder, position: Int) {
         holder.bind(getItem(position))
-
-
     }
 
     override fun getItemViewType(position: Int): Int {
         return if (isSelectionOn) {
             ViewHolderType.MULTISELECT_VIEWHOLDER.ordinal
-
-
         } else {
             ViewHolderType.VIEWHOLDER.ordinal
         }
@@ -76,11 +69,11 @@ class Adapter(val listener: ItemClicks) : ListAdapter<Contact, Adapter.MainViewH
 
                 }
                 root.setOnClickListener {
-                    listener.onItemCLick(bindingAdapterPosition)
+                    listener.onItemCLick(bindingAdapterPosition,contact)
                 }
 
                 avatarTextView.text = contact.name
-                avatarImageView.imageLibs("https://svgsilh.com/svg/304080.svg")
+                avatarImageView.imageLibs("https://i.pinimg.com/736x/fc/27/fb/fc27fb81e77cc56ba4ed981d7801ceb9.jpg")
                 avatarCareer.text = contact.job
                 root.setOnLongClickListener {
                     listener.onSelectionMode(bindingAdapterPosition)
@@ -117,8 +110,6 @@ class Adapter(val listener: ItemClicks) : ListAdapter<Contact, Adapter.MainViewH
                             isCheckedItem.visibility = View.VISIBLE
                         } else {
                             isCheckedItem.visibility = View.GONE
-
-
                         }
                     }
                    buttonRemoveContact.setOnClickListener {

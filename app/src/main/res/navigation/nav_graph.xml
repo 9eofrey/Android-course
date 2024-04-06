@@ -16,5 +16,9 @@
     <fragment
         android:id="@+id/contactDetailFragment"
         android:name="com.example.homework1.ContactDetailFragment"
-        android:label="ContactDetailFragment" />
+        android:label="ContactDetailFragment" >
+        <argument
+            android:name="data"
+            app:argType="com.example.homework1.model.Contact" />
+    </fragment>
 </navigation>

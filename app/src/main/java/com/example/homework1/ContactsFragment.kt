@@ -87,8 +87,8 @@ class ContactsFragment : Fragment() {
         }
 
         recadapter = Adapter(object : ItemClicks {
-            override fun onItemCLick(position:Int) {
-                val directions = HostPagerFragmentDirections.actionHostPagerFragmentToContactDetailFragment()
+            override fun onItemCLick(position:Int,contact: Contact) {
+                val directions = HostPagerFragmentDirections.actionHostPagerFragmentToContactDetailFragment(contact)
                 findNavController().navigate(directions)
 
             }
@@ -130,7 +130,7 @@ class ContactsFragment : Fragment() {
             alertBinding.buttonSaveContact.setOnClickListener {
                 Log.d("clicked", "clicked")
                 val contact = Contact(
-                    R.drawable.ic_launcher_background,
+                    1,
                     alertBinding.editTextUsername.text.toString(),
                     alertBinding.editTextAddress.text.toString(),
                     alertBinding.editTextCareer.text.toString(),

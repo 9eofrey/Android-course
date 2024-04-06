@@ -15,6 +15,7 @@ const val keyBool = "is_checked"
 
 
 class AuthActivity : AppCompatActivity() {
+
     private val sharedPref: SharedPreferences by lazy {
         getSharedPreferences(Constants.MY_PREFS, MODE_PRIVATE)
     }
@@ -60,8 +61,7 @@ class AuthActivity : AppCompatActivity() {
             else -> {
                 // putting data into MainActivity
 
-                    viewModel.email.value = "HELLO"
-                    Log.d("Tag2","value ${viewModel.email.value.toString()}")
+
 
 
                 val  intent = Intent(this, MainActivity::class.java)

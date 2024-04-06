@@ -1,10 +1,8 @@
 package com.example.homework1.model
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.homework1.R
 
 class ContactViewModel : ViewModel() {
 

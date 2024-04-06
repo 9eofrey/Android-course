@@ -2,5 +2,7 @@
     <style name="rounded">
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">50%</item>
+        <item name="cornerRadius">2px</item>
+        <item name="color">#000000</item>
     </style>
 </resources>
