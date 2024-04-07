@@ -1,80 +1,68 @@
 <!-- res/layout/item_list.xml -->
-<FrameLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:backgroundTint="@color/gray"
     android:id="@+id/recycler_item"
+    android:backgroundTint="@color/gray"
     android:layout_width="match_parent"
-
     android:layout_height="wrap_content"
-    android:padding="16dp"
-    android:background="@drawable/shape_stroke_item"
+    android:layout_marginStart="10dp"
     android:layout_marginTop="10dp"
     android:layout_marginEnd="10dp"
-    android:layout_marginStart="8dp">
-
-
-
+    android:background="@drawable/shape_stroke_item"
+    android:orientation="horizontal"
+    android:padding="16dp">
+    <androidx.appcompat.widget.AppCompatCheckBox
+        android:id="@+id/isCheckedCheckbox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:checked="false">
+    </androidx.appcompat.widget.AppCompatCheckBox>
 
     <ImageView
         android:id="@+id/avatarImageView"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_marginHorizontal="8dp"
+        android:layout_gravity="start|center_vertical"
         android:scaleType="centerCrop"
-        android:src="@drawable/ic_launcher_background"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        tools:src="@tools:sample/avatars" />
 
-
-
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/avatarTextView"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_marginStart="16dp"
         android:layout_height="wrap_content"
-        android:textSize="23sp"
-        android:text=" "
-        app:layout_constraintStart_toEndOf="@id/avatarImageView"
-        android:textColor="@android:color/black"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="6dp"
-        android:layout_marginStart="70dp"/>
+        android:layout_weight="20"
+        android:gravity="center"
+        android:orientation="vertical">
 
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/avatarTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top"
+            android:textColor="@android:color/black"
+            android:textSize="23sp"
+            tools:text="Some username" />
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/avatarCareer"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        app:layout_constraintStart_toEndOf="@id/avatarImageView"
-        app:layout_constraintTop_toBottomOf="@id/avatarTextView"
-        android:layout_marginStart="70dp"
-        android:text=""/>
-    <ImageView
-        android:id="@+id/isCheckedItem"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:src="@drawable/item_selected"
-        android:visibility="gone"
-        android:layout_gravity="center_horizontal" />
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/avatarCareer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            tools:text="Some username" />
+    </LinearLayout>
+
 
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/button_remove_contact"
-        android:layout_height="36dp"
         android:layout_width="30dp"
-        android:layout_gravity="end"
-        android:layout_marginTop="6dp"
-        android:background="@drawable/delete_contact_button"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginEnd="13dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        android:layout_height="36dp"
+        android:layout_gravity="end|center_vertical"
+        android:background="@drawable/delete_contact_button" />
 
-
-
-
-</FrameLayout>
+</LinearLayout>
 
 
 

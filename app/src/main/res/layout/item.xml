@@ -1,58 +1,59 @@
 <!-- res/layout/item_list.xml -->
-<FrameLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/recycler_item"
     android:layout_width="match_parent"
-
     android:layout_height="wrap_content"
-    android:padding="16dp"
-    android:background="@drawable/shape_stroke_item"
+    android:layout_marginStart="10dp"
     android:layout_marginTop="10dp"
     android:layout_marginEnd="10dp"
-    android:layout_marginStart="10dp">
+    android:background="@drawable/shape_stroke_item"
+    android:orientation="horizontal"
+    android:padding="16dp">
 
     <ImageView
         android:id="@+id/avatarImageView"
         android:layout_width="50dp"
         android:layout_height="50dp"
+        android:layout_gravity="start|center_vertical"
         android:scaleType="centerCrop"
-        android:src="@drawable/ic_launcher_background"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        tools:src="@tools:sample/avatars" />
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/avatarTextView"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_marginStart="16dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="70dp"
-        android:layout_gravity="left"
+        android:layout_weight="20"
+        android:gravity="center"
+        android:orientation="vertical">
 
-        android:layout_marginTop="6dp"
-        android:text=" "
-        android:textColor="@android:color/black"
-        android:textSize="23sp" />
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/avatarTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top"
+            android:textColor="@android:color/black"
+            android:textSize="23sp"
+            tools:text="Some username" />
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/avatarCareer"
-        android:layout_width="wrap_content"
-        android:layout_marginStart="70dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        android:text=""/>
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/avatarCareer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            tools:text="Some username" />
+    </LinearLayout>
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/button_remove_contact"
         android:layout_width="30dp"
         android:layout_height="36dp"
-        android:layout_marginTop="6dp"
-        android:background="@drawable/delete_contact_button"
-        android:layout_gravity="end"
-        android:layout_marginEnd="13dp"/>
+        android:layout_gravity="end|center_vertical"
+        android:background="@drawable/delete_contact_button" />
 
-
-
-</FrameLayout>
+</LinearLayout>
 
 
 

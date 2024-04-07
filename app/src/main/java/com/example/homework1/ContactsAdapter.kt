@@ -11,10 +11,11 @@ import com.example.homework1.model.Contact
 import com.example.homework1.databinding.ItemBinding
 import com.example.homework1.databinding.MultiselectItemBinding
 import com.example.homework1.ext.imageLibs
-import com.example.homework1.fragments.contacts.ItemClicks
 import com.example.homework1.diffutil.ContactsDiffCallback
+import com.example.homework1.fragments.contacts.OnContactItemListener
+import com.example.homework1.fragments.contacts.OnMultiselectItemListener
 
-class Adapter(val listener: ItemClicks) : ListAdapter<Contact, Adapter.MainViewHolder>(
+class ContactsAdapter(val onContactItemListener: OnContactItemListener,val onMultiselectItemListener: OnMultiselectItemListener) : ListAdapter<Contact, ContactsAdapter.MainViewHolder>(
     ContactsDiffCallback()
 ) {
     private var isSelectionOn: Boolean = false
@@ -49,8 +50,8 @@ class Adapter(val listener: ItemClicks) : ListAdapter<Contact, Adapter.MainViewH
         MULTISELECT_VIEWHOLDER
     }
 
-    fun setMultiselectMode(Selection: Boolean) {
-        isSelectionOn = Selection
+    fun setMultiselectMode(selection: Boolean) {
+        isSelectionOn = selection
     }
 
 
@@ -65,18 +66,18 @@ class Adapter(val listener: ItemClicks) : ListAdapter<Contact, Adapter.MainViewH
                 // TODO add text and picture(with Glide)
 
                 buttonRemoveContact.setOnClickListener {
-                    listener.onDeleteItem(bindingAdapterPosition)
+                   onContactItemListener.onDeleteItem(bindingAdapterPosition)
 
                 }
                 root.setOnClickListener {
-                    listener.onItemCLick(bindingAdapterPosition,contact)
+                    onContactItemListener.onItemCLick(bindingAdapterPosition,contact)
                 }
 
                 avatarTextView.text = contact.name
                 avatarImageView.imageLibs("https://i.pinimg.com/736x/fc/27/fb/fc27fb81e77cc56ba4ed981d7801ceb9.jpg")
                 avatarCareer.text = contact.job
                 root.setOnLongClickListener {
-                    listener.onSelectionMode(bindingAdapterPosition)
+                   onContactItemListener.onLongItemClick(contact)
                     Log.d("isMultiselect", "Clicked")
                     true
                 }
@@ -96,26 +97,20 @@ class Adapter(val listener: ItemClicks) : ListAdapter<Contact, Adapter.MainViewH
                 // TODO add text and picture(with Glide)
 
                 buttonRemoveContact.setOnClickListener {
-                    listener.onDeleteItem(bindingAdapterPosition)
+                    onContactItemListener.onDeleteItem(bindingAdapterPosition)
 
+                }
+                isCheckedCheckbox.isChecked = contact.isChecked
+                itemView.setOnClickListener {
+                    onMultiselectItemListener.onItemSelectionClick(contact)
                 }
 
 
                 avatarTextView.text = contact.name
-                avatarImageView.imageLibs("https://svgsilh.com/svg/304080.svg")
+                avatarImageView.imageLibs("https://i.pinimg.com/736x/fc/27/fb/fc27fb81e77cc56ba4ed981d7801ceb9.jpg")
                 avatarCareer.text = contact.job
-                if (isSelectionOn) {
-                    itemView.setOnClickListener {
-                        if (isCheckedItem.visibility == View.GONE) {
-                            isCheckedItem.visibility = View.VISIBLE
-                        } else {
-                            isCheckedItem.visibility = View.GONE
-                        }
-                    }
-                   buttonRemoveContact.setOnClickListener {
-                       listener.onDeleteMultipleItems()
-                   }
-                }
+
+
 
             }
 

@@ -3,16 +3,17 @@ package com.example.homework1.model
 import android.os.Parcel
 import android.os.Parcelable
 import kotlinx.serialization.Serializable
+import java.util.UUID
 
 
-
- data class Contact(
+data class Contact(
     val avatarResId: Int,
     val name: String?,
     val address: String?,
     val job: String?,
-    val isChecked:Boolean = false
-    ) : Parcelable {
+    val isChecked: Boolean = false,
+    val id: String = UUID.randomUUID().toString(),
+) : Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readInt(),
         parcel.readString(),

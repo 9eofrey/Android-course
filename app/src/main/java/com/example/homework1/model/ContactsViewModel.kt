@@ -15,23 +15,89 @@ class ContactViewModel : ViewModel() {
 
     init {
         _contacts.value =
-            listOf(Contact(
-               avatarResId = 1552,
-                "Anna",
-                "23",
-                "designer",
-                false),
+            listOf(
+                Contact(
+                    avatarResId = 1552,
+                    "Anna",
+                    "23",
+                    "designer",
+                    false
+                ),
                 Contact(
                     avatarResId = 1415,
                     name = "Katara",
                     address = "Ramin",
                     job = "Abigail",
                     isChecked = false
-                ), Contact(
+                ),
+                Contact(
                     avatarResId = 7952,
                     name = "Reno",
                     address = "Audrina",
                     job = "Towanda",
+                    isChecked = false
+                ),
+                Contact(
+                    avatarResId = 7952,
+                    name = "Reno",
+                    address = "Audrina",
+                    job = "Towanda",
+                    isChecked = false
+                ),
+                Contact(
+                    avatarResId = 7952,
+                    name = "Reno",
+                    address = "Audrina",
+                    job = "Towanda",
+                    isChecked = false
+                ),
+                Contact(
+                    avatarResId = 7952,
+                    name = "Reno",
+                    address = "Audrina",
+                    job = "Towanda",
+                    isChecked = false
+                ),
+                Contact(
+                    avatarResId = 7952,
+                    name = "Reno",
+                    address = "Audrina",
+                    job = "Towanda",
+                    isChecked = false
+                ),
+                Contact(
+                    avatarResId = 7952,
+                    name = "Reno",
+                    address = "Audrina",
+                    job = "Towanda",
+                    isChecked = false
+                ),
+                Contact(
+                    avatarResId = 7952,
+                    name = "Reno",
+                    address = "Audrina",
+                    job = "Towanda",
+                    isChecked = false
+                ),
+                Contact(
+                    avatarResId = 7952,
+                    name = "Reno",
+                    address = "Audrina",
+                    job = "Towanda",
+                    isChecked = false
+                ),
+                Contact(
+                    avatarResId = 1552,
+                    "Anna",
+                    "23",
+                    "designer",
+                    false
+                ),
+                Contact(
+                    avatarResId = 1415,
+                    name = "Katara",
+                    address = "Ramin",
+                    job = "Abigail",
                     isChecked = false
                 ),
                 Contact(
@@ -83,8 +149,293 @@ class ContactViewModel : ViewModel() {
                     job = "Towanda",
                     isChecked = false
                 ),
-
-
+                Contact(
+                    avatarResId = 7952,
+                    name = "Reno",
+                    address = "Audrina",
+                    job = "Towanda",
+                    isChecked = false
+                ),
+                Contact(
+                    avatarResId = 1552,
+                    "Anna",
+                    "23",
+                    "designer",
+                    false
+                ),
+                Contact(
+                    avatarResId = 1415,
+                    name = "Katara",
+                    address = "Ramin",
+                    job = "Abigail",
+                    isChecked = false
+                ),
+                Contact(
+                    avatarResId = 7952,
+                    name = "Reno",
+                    address = "Audrina",
+                    job = "Towanda",
+                    isChecked = false
+                ),
+                Contact(
+                    avatarResId = 7952,
+                    name = "Reno",
+                    address = "Audrina",
+                    job = "Towanda",
+                    isChecked = false
+                ),
+                Contact(
+                    avatarResId = 7952,
+                    name = "Reno",
+                    address = "Audrina",
+                    job = "Towanda",
+                    isChecked = false
+                ),
+                Contact(
+                    avatarResId = 7952,
+                    name = "Reno",
+                    address = "Audrina",
+                    job = "Towanda",
+                    isChecked = false
+                ),
+                Contact(
+                    avatarResId = 7952,
+                    name = "Reno",
+                    address = "Audrina",
+                    job = "Towanda",
+                    isChecked = false
+                ),
+                Contact(
+                    avatarResId = 7952,
+                    name = "Reno",
+                    address = "Audrina",
+                    job = "Towanda",
+                    isChecked = false
+                ),
+                Contact(
+                    avatarResId = 7952,
+                    name = "Reno",
+                    address = "Audrina",
+                    job = "Towanda",
+                    isChecked = false
+                ),
+                Contact(
+                    avatarResId = 7952,
+                    name = "Reno",
+                    address = "Audrina",
+                    job = "Towanda",
+                    isChecked = false
+                ),
+                Contact(
+                    avatarResId = 1552,
+                    "Anna",
+                    "23",
+                    "designer",
+                    false
+                ),
+                Contact(
+                    avatarResId = 1415,
+                    name = "Katara",
+                    address = "Ramin",
+                    job = "Abigail",
+                    isChecked = false
+                ),
+                Contact(
+                    avatarResId = 7952,
+                    name = "Reno",
+                    address = "Audrina",
+                    job = "Towanda",
+                    isChecked = false
+                ),
+                Contact(
+                    avatarResId = 7952,
+                    name = "Reno",
+                    address = "Audrina",
+                    job = "Towanda",
+                    isChecked = false
+                ),
+                Contact(
+                    avatarResId = 7952,
+                    name = "Reno",
+                    address = "Audrina",
+                    job = "Towanda",
+                    isChecked = false
+                ),
+                Contact(
+                    avatarResId = 7952,
+                    name = "Reno",
+                    address = "Audrina",
+                    job = "Towanda",
+                    isChecked = false
+                ),
+                Contact(
+                    avatarResId = 7952,
+                    name = "Reno",
+                    address = "Audrina",
+                    job = "Towanda",
+                    isChecked = false
+                ),
+                Contact(
+                    avatarResId = 7952,
+                    name = "Reno",
+                    address = "Audrina",
+                    job = "Towanda",
+                    isChecked = false
+                ),
+                Contact(
+                    avatarResId = 7952,
+                    name = "Reno",
+                    address = "Audrina",
+                    job = "Towanda",
+                    isChecked = false
+                ),
+                Contact(
+                    avatarResId = 7952,
+                    name = "Reno",
+                    address = "Audrina",
+                    job = "Towanda",
+                    isChecked = false
+                ),
+                Contact(
+                    avatarResId = 1552,
+                    "Anna",
+                    "23",
+                    "designer",
+                    false
+                ),
+                Contact(
+                    avatarResId = 1415,
+                    name = "Katara",
+                    address = "Ramin",
+                    job = "Abigail",
+                    isChecked = false
+                ),
+                Contact(
+                    avatarResId = 7952,
+                    name = "Reno",
+                    address = "Audrina",
+                    job = "Towanda",
+                    isChecked = false
+                ),
+                Contact(
+                    avatarResId = 7952,
+                    name = "Reno",
+                    address = "Audrina",
+                    job = "Towanda",
+                    isChecked = false
+                ),
+                Contact(
+                    avatarResId = 7952,
+                    name = "Reno",
+                    address = "Audrina",
+                    job = "Towanda",
+                    isChecked = false
+                ),
+                Contact(
+                    avatarResId = 7952,
+                    name = "Reno",
+                    address = "Audrina",
+                    job = "Towanda",
+                    isChecked = false
+                ),
+                Contact(
+                    avatarResId = 7952,
+                    name = "Reno",
+                    address = "Audrina",
+                    job = "Towanda",
+                    isChecked = false
+                ),
+                Contact(
+                    avatarResId = 7952,
+                    name = "Reno",
+                    address = "Audrina",
+                    job = "Towanda",
+                    isChecked = false
+                ),
+                Contact(
+                    avatarResId = 7952,
+                    name = "Reno",
+                    address = "Audrina",
+                    job = "Towanda",
+                    isChecked = false
+                ),
+                Contact(
+                    avatarResId = 7952,
+                    name = "Reno",
+                    address = "Audrina",
+                    job = "Towanda",
+                    isChecked = false
+                ),
+                Contact(
+                    avatarResId = 1552,
+                    "Anna",
+                    "23",
+                    "designer",
+                    false
+                ),
+                Contact(
+                    avatarResId = 1415,
+                    name = "Katara",
+                    address = "Ramin",
+                    job = "Abigail",
+                    isChecked = false
+                ),
+                Contact(
+                    avatarResId = 7952,
+                    name = "Reno",
+                    address = "Audrina",
+                    job = "Towanda",
+                    isChecked = false
+                ),
+                Contact(
+                    avatarResId = 7952,
+                    name = "Reno",
+                    address = "Audrina",
+                    job = "Towanda",
+                    isChecked = false
+                ),
+                Contact(
+                    avatarResId = 7952,
+                    name = "Reno",
+                    address = "Audrina",
+                    job = "Towanda",
+                    isChecked = false
+                ),
+                Contact(
+                    avatarResId = 7952,
+                    name = "Reno",
+                    address = "Audrina",
+                    job = "Towanda",
+                    isChecked = false
+                ),
+                Contact(
+                    avatarResId = 7952,
+                    name = "Reno",
+                    address = "Audrina",
+                    job = "Towanda",
+                    isChecked = false
+                ),
+                Contact(
+                    avatarResId = 7952,
+                    name = "Reno",
+                    address = "Audrina",
+                    job = "Towanda",
+                    isChecked = false
+                ),
+                Contact(
+                    avatarResId = 7952,
+                    name = "Reno",
+                    address = "Audrina",
+                    job = "Towanda",
+                    isChecked = false
+                ),
+                Contact(
+                    avatarResId = 7952,
+                    name = "Reno",
+                    address = "Audrina",
+                    job = "Towanda",
+                    isChecked = false
+                ),
             )
     }
 
@@ -101,55 +452,40 @@ class ContactViewModel : ViewModel() {
         _contacts.value = list
     }
 
-    fun onItemLongClick(position: Int) {
-        _isSelectedModeOn.value = true
-        _contacts.value = _contacts.value?.toMutableList().apply {
-            this?.get(position)?.let {
-                this[position] = it.copy(isChecked = true)
-
-            }
-        }
-       // Log.d("isMultiselect", "OnItemSelected(before) = ${_contacts.value?.get(position)}")
-     //   onItemClickSelect(position)
-      //  Log.d("isMultiselect", "OnItemSelected(after) = ${_contacts.value}")
+    fun onSelectionMode(isSelectionModeEnabled: Boolean) {
+        _isSelectedModeOn.value = isSelectionModeEnabled
     }
-    fun onItemClickSelect(position: Int){
-                _contacts.value = _contacts.value?.toMutableList().apply {
-            this?.get(position)?.let {
-                this[position] = it.copy(isChecked = true)
 
-            }
-          }
+    fun onDeleteSelectedItems() {
+        _contacts.value = _contacts.value?.filterNot { it.isChecked }
     }
-    fun onItemClickDeselect(position: Int){
-        _contacts.value = _contacts.value?.toMutableList().apply {
-            this?.get(position)?.let {
-                this[position] = it.copy(isChecked = false)
 
-            }
+
+
+
+    fun onItemSelection(contact: Contact) {
+        val position = contacts.value?.indexOf(contact)!!
+        if (contact.isChecked) {
+            onItemClickDeselect(position)
+        } else {
+            onItemClickSelect(position)
         }
     }
 
-fun onDeleteSelectedItems(){
-   val list = emptyList<Contact>().toMutableList()
-   for(i in _contacts.value!! ) {
-       if (i.isChecked) {
-           list.add(i)
-       }
-   }
-    list.removeAll(list)
-    _contacts.value =list
-}
+    private fun onItemClickSelect(position: Int) {
+        _contacts.value = _contacts.value?.toMutableList()?.apply {
+            this[position] = get(position).copy(isChecked = true)
+        }
+    }
 
+    private fun onItemClickDeselect(position: Int) {
+        _contacts.value = _contacts.value?.toMutableList()?.apply {
+            this[position] = get(position).copy(isChecked = false)
+        }
 
-    fun getContact(position: Int): Contact {
-        return contacts.value?.get(position) ?: Contact(
-            avatarResId = 4475,
-            name = "Rami",
-            address = "Niketa",
-            job = "Lizzette",
-            isChecked = true
-        )
+        if (contacts.value?.any { it.isChecked } == false) {
+            onSelectionMode(false)
+        }
     }
 }
 

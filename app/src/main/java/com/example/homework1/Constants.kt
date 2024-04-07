@@ -1,7 +1,7 @@
 package com.example.homework1
 
 object Constants {
-    const val username ="USERNAME"
+    const val USERNAME ="USERNAME"
     const val isChecked ="BOOL"
 
 

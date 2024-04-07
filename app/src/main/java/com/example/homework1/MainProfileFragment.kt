@@ -18,7 +18,7 @@ class MainProfileFragment : Fragment() {
     private val viewModel: AuthViewModel by viewModels()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View {
         binding = FragmentMainProfileBinding.inflate(inflater, container, false)
         Log.d("Mytag", "value ${viewModel.email.value.toString()}")
@@ -29,12 +29,11 @@ class MainProfileFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         with(binding) {
             profileImage.imageLibs("https://static.thenounproject.com/png/3237155-200.png")
-            viewModel.email.observe(viewLifecycleOwner) {
-                profileNameText.text = it
-            }
-
+            val email = activity?.intent?.getStringExtra(Constants.USERNAME).orEmpty()
+            binding.profileNameText.text =setUserName(email)
         }
     }
+
     private fun setUserName(email: String): String {
         var str = ""
 

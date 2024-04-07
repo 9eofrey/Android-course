@@ -3,21 +3,22 @@ package com.example.homework1
 import android.app.AlertDialog
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.homework1.model.Contact
-import com.example.homework1.ext.SwipeToDelete
 import com.example.homework1.databinding.AlertDialogBinding
 import com.example.homework1.databinding.FragmentContactsListBinding
 import com.example.homework1.databinding.ItemBinding
-import com.example.homework1.fragments.contacts.ItemClicks
+import com.example.homework1.ext.SwipeToDelete
+import com.example.homework1.fragments.contacts.OnContactItemListener
+import com.example.homework1.fragments.contacts.OnMultiselectItemListener
+import com.example.homework1.model.Contact
 import com.example.homework1.model.ContactViewModel
 
 
@@ -25,14 +26,14 @@ class ContactsFragment : Fragment() {
     private lateinit var binding: FragmentContactsListBinding
     private lateinit var alertBinding: AlertDialogBinding
     private val viewModel: ContactViewModel by viewModels()
-    lateinit var recadapter: Adapter
-    lateinit var navCont :NavController
-    lateinit var itemBinding:ItemBinding
+    lateinit var recadapter: ContactsAdapter
+    lateinit var navCont: NavController
+    lateinit var itemBinding: ItemBinding
 
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View? {
 
 
@@ -42,13 +43,10 @@ class ContactsFragment : Fragment() {
         setAdapter()
         setAlertDialog()
 
-        navCont= findNavController()
+        navCont = findNavController()
         return binding.root
 
     }
-
-
-
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -57,7 +55,8 @@ class ContactsFragment : Fragment() {
         setObservers()
 
     }
-    fun showToast(){
+
+    fun showToast() {
         // TODO Implement Toast
     }
 
@@ -67,11 +66,12 @@ class ContactsFragment : Fragment() {
             recadapter.submitList(it)
         }
         viewModel.isSelectedModeOn.observe(viewLifecycleOwner) {
-            Log.d("isMultiselect","Multiselect = $it")
+            Log.d("isMultiselect", "Multiselect = $it")
             recadapter.setMultiselectMode(it)
         }
     }
-    private fun setListeners(){
+
+    private fun setListeners() {
 
         binding.apply {
             buttonBackNavigation.setOnClickListener {
@@ -79,46 +79,47 @@ class ContactsFragment : Fragment() {
             }
         }
     }
-    private fun setAdapter(){
+
+    private fun setAdapter() {
         binding.recycleViewContacts.layoutManager = LinearLayoutManager(context)
 
-        binding.recycleViewContacts.SwipeToDelete{
+        binding.recycleViewContacts.SwipeToDelete {
             viewModel.deleteOnPosition(it)
         }
 
-        recadapter = Adapter(object : ItemClicks {
-            override fun onItemCLick(position:Int,contact: Contact) {
-                val directions = HostPagerFragmentDirections.actionHostPagerFragmentToContactDetailFragment(contact)
-                findNavController().navigate(directions)
+        recadapter = ContactsAdapter(
+            onContactItemListener = object : OnContactItemListener {
+                override fun onItemCLick(position: Int, contact: Contact) {
+                    val directions =
+                        HostPagerFragmentDirections.actionHostPagerFragmentToContactDetailFragment(
+                            contact
+                        )
+                    findNavController().navigate(directions)
+                }
 
+                override fun onDeleteItem(position: Int) {
+                    viewModel.deleteOnPosition(position)
+
+                }
+
+                override fun onLongItemClick(contact: Contact) {
+                    viewModel.onSelectionMode(true)
+                    viewModel.onItemSelection(contact)
+                }
+            },
+            onMultiselectItemListener = object : OnMultiselectItemListener {
+                override fun onRemoveItemClick(contact: Contact) {
+                    TODO("Not yet implemented")
+                }
+
+                override fun onItemSelectionClick(contact: Contact) {
+                    viewModel.onItemSelection(contact)
+                }
             }
-
-            override fun onDeleteItem(position: Int) {
-                viewModel.deleteOnPosition(position)
-
-            }
-
-            override fun onSelectionMode(position: Int) {
-                viewModel.onItemLongClick(position)
-            }
-
-            override fun onClickSelection(position: Int) {
-                viewModel.onItemClickSelect(position)
-
-            }
-
-            override fun onClickDeselection(position: Int) {
-                viewModel.onItemClickDeselect(position)
-            }
-
-            override fun onDeleteMultipleItems() {
-                viewModel.onDeleteSelectedItems()
-            }
-
-        })
+        )
         binding.recycleViewContacts.adapter = recadapter
-
     }
+
     private fun setAlertDialog() {
 
         alertBinding = AlertDialogBinding.inflate(layoutInflater)
@@ -135,7 +136,7 @@ class ContactsFragment : Fragment() {
                     alertBinding.editTextAddress.text.toString(),
                     alertBinding.editTextCareer.text.toString(),
                     false
-                    
+
                 )
 
                 viewModel.addData(contact)

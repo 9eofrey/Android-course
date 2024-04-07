@@ -4,7 +4,6 @@ import android.content.Intent
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.viewModels
 import com.example.homework1.databinding.ActivityAuthBinding
 import com.example.homework1.model.AuthViewModel
@@ -28,14 +27,14 @@ class AuthActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-       // handleStartActivity()
+//        handleStartActivity()
         setListeners()
     }
 
     private fun handleStartActivity() {
         if (getDataOfRememberMe()) {
             val intent = Intent(this, MainActivity::class.java)
-            intent.putExtra(Constants.username, getAcName())
+            intent.putExtra(Constants.USERNAME, getAcName())
             startActivity(intent)
         }
     }
@@ -61,11 +60,10 @@ class AuthActivity : AppCompatActivity() {
             else -> {
                 // putting data into MainActivity
 
-
-
+                viewModel.addData(binding.emailEditText.text.toString())
 
                 val  intent = Intent(this, MainActivity::class.java)
-              //  intent.putExtra(binding.emailEditText.text.toString())
+                intent.putExtra(Constants.USERNAME, binding.emailEditText.text.toString())
                 startActivity(intent)
 //                if (binding.rememberCheckbox.isChecked) {
 //                    saveData(
