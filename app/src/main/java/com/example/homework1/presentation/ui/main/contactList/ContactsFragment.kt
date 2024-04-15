@@ -1,4 +1,4 @@
-package com.example.homework1
+package com.example.homework1.presentation.ui.main.contactList
 
 import android.app.AlertDialog
 import android.os.Bundle
@@ -12,33 +12,33 @@ import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.homework1.R
+import com.example.homework1.data.Contact
 import com.example.homework1.databinding.AlertDialogBinding
 import com.example.homework1.databinding.FragmentContactsListBinding
-import com.example.homework1.databinding.ItemBinding
-import com.example.homework1.ext.SwipeToDelete
-import com.example.homework1.fragments.contacts.OnContactItemListener
-import com.example.homework1.fragments.contacts.OnMultiselectItemListener
-import com.example.homework1.model.Contact
-import com.example.homework1.model.ContactViewModel
+import com.example.homework1.presentation.ui.main.contactList.adapter.ContactsAdapter
+import com.example.homework1.presentation.ui.main.contactList.interfaces.OnContactItemListener
+import com.example.homework1.presentation.ui.main.contactList.interfaces.OnMultiselectItemListener
+import com.example.homework1.presentation.ui.main.pager.HostPagerFragmentDirections
+import com.example.homework1.presentation.uitl.ext.SwipeToDelete
 
 
 class ContactsFragment : Fragment() {
+
     private lateinit var binding: FragmentContactsListBinding
     private lateinit var alertBinding: AlertDialogBinding
     private val viewModel: ContactViewModel by viewModels()
-    lateinit var recadapter: ContactsAdapter
-    lateinit var navCont: NavController
-    lateinit var itemBinding: ItemBinding
+    private lateinit var recadapter: ContactsAdapter
+    private lateinit var navCont: NavController
 
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
-    ): View? {
+    ): View {
 
 
         binding = FragmentContactsListBinding.inflate(inflater, container, false)
-        itemBinding = ItemBinding.inflate(layoutInflater)
         setListeners()
         setAdapter()
         setAlertDialog()
@@ -131,7 +131,6 @@ class ContactsFragment : Fragment() {
             alertBinding.buttonSaveContact.setOnClickListener {
                 Log.d("clicked", "clicked")
                 val contact = Contact(
-                    1,
                     alertBinding.editTextUsername.text.toString(),
                     alertBinding.editTextAddress.text.toString(),
                     alertBinding.editTextCareer.text.toString(),

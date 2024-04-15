@@ -1,12 +1,15 @@
-package com.example.homework1
+package com.example.homework1.presentation.ui.auth
 
 import android.content.Intent
 import android.content.SharedPreferences
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Patterns
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
+import com.example.homework1.Constants
+import com.example.homework1.R
 import com.example.homework1.databinding.ActivityAuthBinding
-import com.example.homework1.model.AuthViewModel
+import com.example.homework1.presentation.ui.main.MainActivity
 
 const val KEY_NAME = "ac_name"
 const val keyPass = "ac_pass"
@@ -21,7 +24,7 @@ class AuthActivity : AppCompatActivity() {
     private val binding: ActivityAuthBinding by lazy {
         ActivityAuthBinding.inflate(layoutInflater)
     }
-    private val viewModel:AuthViewModel by viewModels()
+    private val viewModel: AuthViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,8 +47,14 @@ class AuthActivity : AppCompatActivity() {
 
     }
 
+    //Todo : export validation to another file
     private fun onRegisterUser() { // TODO: read about scope function with
         // setting actions on click
+
+        //for validation
+        if ("sdfsf".matches(Patterns.EMAIL_ADDRESS.toRegex())) {
+
+        }
         when {
             // checking validation
             binding.emailEditText.length() == 0 -> binding.emailEditText.error =
@@ -62,7 +71,7 @@ class AuthActivity : AppCompatActivity() {
 
                 viewModel.addData(binding.emailEditText.text.toString())
 
-                val  intent = Intent(this, MainActivity::class.java)
+                val intent = Intent(this, MainActivity::class.java)
                 intent.putExtra(Constants.USERNAME, binding.emailEditText.text.toString())
                 startActivity(intent)
 //                if (binding.rememberCheckbox.isChecked) {
@@ -72,13 +81,13 @@ class AuthActivity : AppCompatActivity() {
 //                        true
 //                    )
 //                    //Log.d("save data", "$isCheck")
-                }
+            }
 
 //
-               // intent.putExtra(Constants.username, binding.emailEditText.text.toString())
-              //   intent.putExtra(Constants.isChecked, isCheck) // TODO: need?
-               // startActivity(intent)
-           // }
+            // intent.putExtra(Constants.username, binding.emailEditText.text.toString())
+            //   intent.putExtra(Constants.isChecked, isCheck) // TODO: need?
+            // startActivity(intent)
+            // }
         }
     }
 

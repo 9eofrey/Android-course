@@ -1,14 +1,11 @@
-package com.example.homework1
+package com.example.homework1.presentation.ui.main
 
-import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
-import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
+import com.example.homework1.R
 import com.example.homework1.databinding.ActivityMainBinding
-import java.util.Locale
 
 class MainActivity : AppCompatActivity() { // TODO: use binding
     private lateinit var navController: NavController
@@ -22,6 +19,8 @@ class MainActivity : AppCompatActivity() { // TODO: use binding
     override fun onSupportNavigateUp(): Boolean {
         navController= findNavController(R.id.fragmentContainerView)
         return navController.navigateUp() || super.onSupportNavigateUp()
+
+
     }
 
 

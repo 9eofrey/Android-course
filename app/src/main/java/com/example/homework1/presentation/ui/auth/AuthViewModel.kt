@@ -1,4 +1,4 @@
-package com.example.homework1.model
+package com.example.homework1.presentation.ui.auth
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

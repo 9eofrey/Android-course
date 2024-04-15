@@ -6,7 +6,7 @@
     app:startDestination="@id/hostPagerFragment">
     <fragment
         android:id="@+id/hostPagerFragment"
-        android:name="com.example.homework1.HostPagerFragment"
+        android:name="com.example.homework1.presentation.ui.main.pager.HostPagerFragment"
         android:label="fragment_host_pager"
         tools:layout="@layout/fragment_host_pager" >
         <action
@@ -15,10 +15,10 @@
     </fragment>
     <fragment
         android:id="@+id/contactDetailFragment"
-        android:name="com.example.homework1.ContactDetailFragment"
+        android:name="com.example.homework1.presentation.ui.main.contactDeteil.ContactDetailFragment"
         android:label="ContactDetailFragment" >
         <argument
             android:name="data"
-            app:argType="com.example.homework1.model.Contact" />
+            app:argType="com.example.homework1.data.Contact" />
     </fragment>
 </navigation>

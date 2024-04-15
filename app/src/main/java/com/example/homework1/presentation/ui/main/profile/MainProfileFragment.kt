@@ -1,15 +1,17 @@
-package com.example.homework1
+package com.example.homework1.presentation.ui.main.profile
 
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import com.example.homework1.Constants
 import com.example.homework1.databinding.FragmentMainProfileBinding
-import com.example.homework1.ext.imageLibs
-import com.example.homework1.model.AuthViewModel
+import com.example.homework1.presentation.ui.auth.AuthViewModel
+import com.example.homework1.presentation.ui.main.pager.HostPagerFragment
+import com.example.homework1.presentation.uitl.ext.imageLibs
 import java.util.Locale
 
 
@@ -22,6 +24,10 @@ class MainProfileFragment : Fragment() {
     ): View {
         binding = FragmentMainProfileBinding.inflate(inflater, container, false)
         Log.d("Mytag", "value ${viewModel.email.value.toString()}")
+
+        binding.viewContactsButton.setOnClickListener {
+            (parentFragment as HostPagerFragment).getViewPager().currentItem = 1
+        }
         return binding.root
     }
 
@@ -30,10 +36,12 @@ class MainProfileFragment : Fragment() {
         with(binding) {
             profileImage.imageLibs("https://static.thenounproject.com/png/3237155-200.png")
             val email = activity?.intent?.getStringExtra(Constants.USERNAME).orEmpty()
-            binding.profileNameText.text =setUserName(email)
+
+            binding.profileNameText.text = setUserName(email)
         }
     }
 
+    //Todo : export logic to another file
     private fun setUserName(email: String): String {
         var str = ""
 

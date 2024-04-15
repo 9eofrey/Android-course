@@ -1,13 +1,13 @@
-package com.example.homework1
+package com.example.homework1.presentation.ui.main.pager
 
 import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.fragment.findNavController
+import androidx.fragment.app.Fragment
 import com.example.homework1.databinding.FragmentHostPagerBinding
+import com.example.homework1.presentation.ui.main.contactList.ContactsFragment
+import com.example.homework1.presentation.ui.main.profile.MainProfileFragment
 import com.google.android.material.tabs.TabLayoutMediator
 
 
@@ -17,28 +17,26 @@ class HostPagerFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentHostPagerBinding.inflate(inflater,container,false)
+        binding = FragmentHostPagerBinding.inflate(inflater, container, false)
         return binding.root
     }
 
 
-
-
-
+    fun getViewPager() = binding.viewPager
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        val list  = listOf(
+        val list = listOf(
 
             MainProfileFragment(),
             ContactsFragment()
         )
         val titles = listOf(
-            "tab1","tab2"
+            "tab1", "tab2"
         )
-        val adapter = PagerAdapter(this.requireActivity(),list)
-        binding.viewPager.adapter =adapter
-        TabLayoutMediator(binding.tabLayout,binding.viewPager){
-            tab,pos->tab.text = titles[pos]
+        val adapter = PagerAdapter(this.requireActivity(), list)
+        binding.viewPager.adapter = adapter
+        TabLayoutMediator(binding.tabLayout, binding.viewPager) { tab, pos ->
+            tab.text = titles[pos]
         }.attach()
     }
 

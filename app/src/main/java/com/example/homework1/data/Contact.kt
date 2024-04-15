@@ -1,21 +1,19 @@
-package com.example.homework1.model
+package com.example.homework1.data
 
 import android.os.Parcel
 import android.os.Parcelable
-import kotlinx.serialization.Serializable
 import java.util.UUID
 
 
 data class Contact(
-    val avatarResId: Int,
     val name: String?,
     val address: String?,
     val job: String?,
     val isChecked: Boolean = false,
     val id: String = UUID.randomUUID().toString(),
 ) : Parcelable {
+
     constructor(parcel: Parcel) : this(
-        parcel.readInt(),
         parcel.readString(),
         parcel.readString(),
         parcel.readString(),
@@ -24,7 +22,6 @@ data class Contact(
     }
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
-        parcel.writeInt(avatarResId)
         parcel.writeString(name)
         parcel.writeString(address)
         parcel.writeString(job)

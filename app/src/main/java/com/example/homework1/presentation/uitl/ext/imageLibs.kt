@@ -1,4 +1,4 @@
-package com.example.homework1.ext
+package com.example.homework1.presentation.uitl.ext
 
 import android.widget.ImageView
 import com.bumptech.glide.Glide

@@ -1,4 +1,4 @@
-package com.example.homework1
+package com.example.homework1.presentation.ui.main.contactList.adapter
 
 
 import android.util.Log
@@ -7,15 +7,17 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.homework1.model.Contact
+import com.example.homework1.data.Contact
 import com.example.homework1.databinding.ItemBinding
 import com.example.homework1.databinding.MultiselectItemBinding
-import com.example.homework1.ext.imageLibs
-import com.example.homework1.diffutil.ContactsDiffCallback
-import com.example.homework1.fragments.contacts.OnContactItemListener
-import com.example.homework1.fragments.contacts.OnMultiselectItemListener
+import com.example.homework1.presentation.ui.main.contactList.interfaces.OnContactItemListener
+import com.example.homework1.presentation.ui.main.contactList.interfaces.OnMultiselectItemListener
+import com.example.homework1.presentation.uitl.ext.imageLibs
 
-class ContactsAdapter(val onContactItemListener: OnContactItemListener,val onMultiselectItemListener: OnMultiselectItemListener) : ListAdapter<Contact, ContactsAdapter.MainViewHolder>(
+class ContactsAdapter(
+    val onContactItemListener: OnContactItemListener,
+    val onMultiselectItemListener: OnMultiselectItemListener
+) : ListAdapter<Contact, ContactsAdapter.MainViewHolder>(
     ContactsDiffCallback()
 ) {
     private var isSelectionOn: Boolean = false
@@ -33,6 +35,7 @@ class ContactsAdapter(val onContactItemListener: OnContactItemListener,val onMul
             MultiselectViewHolder(binding)
         }
     }
+
     override fun onBindViewHolder(holder: MainViewHolder, position: Int) {
         holder.bind(getItem(position))
     }
@@ -61,32 +64,25 @@ class ContactsAdapter(val onContactItemListener: OnContactItemListener,val onMul
 
     inner class ViewHolder(private val binding: ItemBinding) : MainViewHolder(binding.root) {
         override fun bind(contact: Contact) {
-
             with(binding) {
                 // TODO add text and picture(with Glide)
 
                 buttonRemoveContact.setOnClickListener {
-                   onContactItemListener.onDeleteItem(bindingAdapterPosition)
-
+                    onContactItemListener.onDeleteItem(bindingAdapterPosition)
                 }
                 root.setOnClickListener {
-                    onContactItemListener.onItemCLick(bindingAdapterPosition,contact)
+                    onContactItemListener.onItemCLick(bindingAdapterPosition, contact)
                 }
-
                 avatarTextView.text = contact.name
                 avatarImageView.imageLibs("https://i.pinimg.com/736x/fc/27/fb/fc27fb81e77cc56ba4ed981d7801ceb9.jpg")
                 avatarCareer.text = contact.job
                 root.setOnLongClickListener {
-                   onContactItemListener.onLongItemClick(contact)
+                    onContactItemListener.onLongItemClick(contact)
                     Log.d("isMultiselect", "Clicked")
                     true
                 }
-
             }
-
         }
-
-
     }
 
     inner class MultiselectViewHolder(private val itemBinding: MultiselectItemBinding) :
@@ -95,22 +91,16 @@ class ContactsAdapter(val onContactItemListener: OnContactItemListener,val onMul
 
             with(itemBinding) {
                 // TODO add text and picture(with Glide)
-
                 buttonRemoveContact.setOnClickListener {
                     onContactItemListener.onDeleteItem(bindingAdapterPosition)
-
                 }
                 isCheckedCheckbox.isChecked = contact.isChecked
                 itemView.setOnClickListener {
                     onMultiselectItemListener.onItemSelectionClick(contact)
                 }
-
-
                 avatarTextView.text = contact.name
                 avatarImageView.imageLibs("https://i.pinimg.com/736x/fc/27/fb/fc27fb81e77cc56ba4ed981d7801ceb9.jpg")
                 avatarCareer.text = contact.job
-
-
 
             }
 

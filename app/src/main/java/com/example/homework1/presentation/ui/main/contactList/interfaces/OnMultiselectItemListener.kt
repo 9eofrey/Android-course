@@ -1,6 +1,6 @@
-package com.example.homework1.fragments.contacts
+package com.example.homework1.presentation.ui.main.contactList.interfaces
 
-import com.example.homework1.model.Contact
+import com.example.homework1.data.Contact
 
 interface OnMultiselectItemListener {
     fun onRemoveItemClick(contact: Contact)
