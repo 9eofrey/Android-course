@@ -31,9 +31,9 @@ class ContactViewModel : ViewModel() {
 
     }
 
-    fun deleteOnPosition(position: Int) {
-        if (position > 0) {
-            updateLiveDate { removeAt(position) }
+    fun deleteContact(contact: Contact) {
+        if (_contacts.value!!.contains(contact)) {
+            updateLiveDate { remove(contact) }
         }
 
     }
@@ -44,6 +44,13 @@ class ContactViewModel : ViewModel() {
 
     fun onDeleteSelectedItems() {
         _contacts.value = _contacts.value?.filterNot { it.isChecked }
+    }
+    fun deleteOnPosition(position: Int){
+        if (position==-1){
+            return
+        }else {
+            updateLiveDate { removeAt(position) }
+        }
     }
 
 
@@ -57,15 +64,21 @@ class ContactViewModel : ViewModel() {
     }
 
     private fun onItemClickSelect(position: Int) {
-        _contacts.value = _contacts.value?.toMutableList()?.apply {
-            this[position] = get(position).copy(isChecked = true)
-        }
+        if (position!=-1){
+            _contacts.value = _contacts.value?.toMutableList()?.apply {
+                this[position] = get(position).copy(isChecked = true)
+            }
+        }else return
+
     }
 
     private fun onItemClickDeselect(position: Int) {
-        _contacts.value = _contacts.value?.toMutableList()?.apply {
-            this[position] = get(position).copy(isChecked = false)
-        }
+        if (position!=-1){
+            _contacts.value = _contacts.value?.toMutableList()?.apply {
+                this[position] = get(position).copy(isChecked = false)
+            }
+        }else return
+
 
         if (contacts.value?.any { it.isChecked } == false) {
             onSelectionMode(false)

@@ -55,12 +55,6 @@
 
 
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/button_remove_contact"
-        android:layout_width="30dp"
-        android:layout_height="36dp"
-        android:layout_gravity="end|center_vertical"
-        android:background="@drawable/delete_contact_button" />
 
 </LinearLayout>
 
