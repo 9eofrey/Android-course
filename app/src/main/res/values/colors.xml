@@ -5,4 +5,9 @@
     <color name="main_background">#242235</color>
     <color name="view_contacts_button">#FB5E06</color>
     <color name="edit_text_name">#BDBDBD</color>
+    <color name="white_for_text">#FFFFFF</color>
+    <color name="fragment_background">#FAFAFA</color>
+    <color name="gray">#BDBDBD</color>
+    <color name="selected_item">#939393</color>
+
 </resources>

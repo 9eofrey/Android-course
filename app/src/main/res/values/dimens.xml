@@ -1,7 +1,9 @@
 <resources>
     <dimen name="fab_margin">16dp</dimen>
-    <dimen name="_31sp">31sp</dimen>
+    <dimen name="heading_text">31sp</dimen>
     <dimen name="email_height">57dp</dimen>
     <dimen name="normal_margin">16dp</dimen>
-    <dimen name="_119dp">119dp</dimen>
+    <dimen name="button_width">119dp</dimen>
+    <dimen name="main_heading_text">37sp</dimen>
+    <dimen name="plain_text">14sp</dimen>
 </resources>

@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/contacts_list_constraint"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".presentation.ui.main.contactList.ContactsFragment"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+
+    <View
+        android:id="@+id/viewTopBackground"
+        android:layout_width="0dp"
+        android:layout_height="149dp"
+        android:background="?attr/colorMainBackground"
+        app:layout_constraintBottom_toTopOf="@id/viewBottomBackground"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+
+
+        />
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Contacts"
+        android:textColor="@color/white_for_text"
+        android:textSize="@dimen/main_heading_text"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="10dp"
+        >
+
+    </androidx.appcompat.widget.AppCompatTextView>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/button_back_navigation"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:background="@drawable/button_back_navigation"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp"
+        >
+
+    </androidx.appcompat.widget.AppCompatButton>
+
+
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tex_view_add_contacts"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add contacts"
+        android:textColor="@color/white_for_text"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/viewTopBackground"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginBottom="26dp"
+        android:layout_marginStart="16dp"
+        >
+
+    </androidx.appcompat.widget.AppCompatTextView>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/button_add_contact"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/frame_button_view_my_contacts"
+        android:textColor="@color/white_for_text"
+        android:text="add contact"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toBottomOf="@id/viewTopBackground"
+
+        android:layout_marginStart="20dp"
+        >
+
+    </androidx.appcompat.widget.AppCompatButton>
+
+    <View
+        android:id="@+id/viewBottomBackground"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/fragment_background"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/viewTopBackground"
+
+
+        />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycleViewContacts"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/viewTopBackground"
+        tools:listitem="@layout/item"
+        android:clipToPadding="false">
+    </androidx.recyclerview.widget.RecyclerView>
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/button_delete_selected_contacts"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/delete_selected_contacts"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="16dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+

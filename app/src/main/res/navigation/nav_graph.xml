@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/hostPagerFragment">
+    <fragment
+        android:id="@+id/hostPagerFragment"
+        android:name="com.example.homework1.presentation.ui.main.pager.HostPagerFragment"
+        android:label="fragment_host_pager"
+        tools:layout="@layout/fragment_host_pager" >
+        <action
+            android:id="@+id/action_hostPagerFragment_to_contactDetailFragment"
+            app:destination="@id/contactDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/contactDetailFragment"
+        android:name="com.example.homework1.presentation.ui.main.contactDetail.ContactDetailFragment"
+        android:label="ContactDetailFragment" >
+        <argument
+            android:name="data"
+            app:argType="com.example.homework1.data.Contact" />
+    </fragment>
+</navigation>

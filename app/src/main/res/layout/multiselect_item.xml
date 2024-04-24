@@ -1,0 +1,64 @@
+<!-- res/layout/item_list.xml -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/recycler_item"
+    android:backgroundTint="@color/gray"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="10dp"
+    android:layout_marginTop="10dp"
+    android:layout_marginEnd="10dp"
+    android:background="@drawable/shape_stroke_item"
+    android:orientation="horizontal"
+    android:padding="16dp">
+    <androidx.appcompat.widget.AppCompatCheckBox
+        android:id="@+id/isCheckedCheckbox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:checked="false">
+    </androidx.appcompat.widget.AppCompatCheckBox>
+
+    <ImageView
+        android:id="@+id/avatarImageView"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_gravity="start|center_vertical"
+        android:scaleType="centerCrop"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:src="@tools:sample/avatars" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="20"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/avatarTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top"
+            android:textColor="@android:color/black"
+            android:textSize="23sp"
+            tools:text="Some username" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/avatarCareer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            tools:text="Some username" />
+    </LinearLayout>
+
+
+
+
+</LinearLayout>
+
+
+
+
+

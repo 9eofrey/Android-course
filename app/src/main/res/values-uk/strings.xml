@@ -1,20 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">homework 1</string>
+
+    <!-- auth screen-->
+    <string name="greeting">Давайте знайомитися</string>
+    <string name="instructions">Заповніть данні профілю та увійдете в додаток!</string>
+    <string name="check_box_hint">Запам\'ятати мене</string>
+    <string name="instructions_name_text">E-mail</string>
+    <string name="password_edit_text_hint">Пароль</string>
+    <string name="register_button_text">зареєструватися</string>
+    <string name="email_error">поля повинні бути заповнені</string>
+    <string name="google">Google</string>
+
+   <!-- main profile screen-->
     <string name="settings">Налаштування</string>
     <string name="view_my_contacts">Переглянути мої контакти</string>
     <string name="edit_profile">Редагувати профіль</string>
     <string name="job">графічний дизайнер</string>
     <string name="profile_name">Люсі Авакардо</string>
     <string name="adress">5295 gaylord Street 23</string>
-    <string name="greeting">Давайте знайомитися</string>
-    <string name="instructions">Заповніть данні профілю та увійдете в додаток!</string>
-    <string name="instructions_name_text">E-mail</string>
-    <string name="check_box_hint">Запам\'ятати мене</string>
-    <string name="password_edit_text_hint">Пароль</string>
-    <string name="register_button_text">зареєструватися</string>
     <string name="log_out_button_text">вийти</string>
-    <string name="email_error">поля повинні бути заповнені</string>
-    <string name="google">Google</string>
+
+   <!-- alert dialog screen-->
+    <string name="add_contact">Додати контакт</string>
+    <string name="edit_text_career_hint">Робота</string>
+    <string name="edit_text_username_hint">Ім\'я</string>
+    <string name="edit_text_email_hint">E-mail</string>
+    <string name="edit_text_phone_hint">Телефон</string>
+    <string name="edit_text_address_hint">Aдреса</string>
+    <string name="edit_text_date_of_birth_hint">Дата народження</string>
+    <string name="button_save_contact_text">ЗБЕРЕГТИ</string>
+    <!-- sign up extended screen-->
+    <string name="screen_main_label_text">Дані вашого профілю</string>
+    <string name="button_cancel_text">Скасувати</string>
+    <string name="button_forward_text">ДАЛІ</string>
 
 </resources>
