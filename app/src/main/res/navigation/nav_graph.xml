@@ -15,7 +15,7 @@
     </fragment>
     <fragment
         android:id="@+id/contactDetailFragment"
-        android:name="com.example.homework1.presentation.ui.main.contactDeteil.ContactDetailFragment"
+        android:name="com.example.homework1.presentation.ui.main.contactDetail.ContactDetailFragment"
         android:label="ContactDetailFragment" >
         <argument
             android:name="data"

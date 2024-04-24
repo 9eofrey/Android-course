@@ -3,7 +3,6 @@ package com.example.homework1.presentation.ui.main.contactList
 import SwipeToDeleteCallback
 import android.app.AlertDialog
 import android.os.Bundle
-import android.os.Parcel
 
 import android.util.Log
 import android.view.LayoutInflater
@@ -15,7 +14,6 @@ import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.ItemTouchHelper
-import androidx.recyclerview.widget.ItemTouchHelper.*
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.homework1.R
@@ -26,6 +24,7 @@ import com.example.homework1.presentation.ui.main.contactList.adapter.ContactsAd
 import com.example.homework1.presentation.ui.main.contactList.interfaces.OnContactItemListener
 import com.example.homework1.presentation.ui.main.contactList.interfaces.OnMultiselectItemListener
 import com.example.homework1.presentation.ui.main.pager.HostPagerFragmentDirections
+import com.google.android.material.snackbar.Snackbar
 
 
 class ContactsFragment:Fragment() {
@@ -36,6 +35,7 @@ class ContactsFragment:Fragment() {
     private lateinit var recadapter: ContactsAdapter
     private lateinit var navCont: NavController
     private var itemTouchHelper:ItemTouchHelper? =null
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
@@ -61,18 +61,20 @@ class ContactsFragment:Fragment() {
     }
 
 
-    fun showToast() {
-        // TODO Implement Toast
-    }
 
     private fun setObservers() {
 
         viewModel.contacts.observe(viewLifecycleOwner) {
             recadapter.submitList(it)
+
+
+
         }
         viewModel.isSelectedModeOn.observe(viewLifecycleOwner) {
             Log.d("isMultiselect", "Multiselect = $it")
             recadapter.setMultiselectMode(it)
+            setSwipeToDelete()
+            setDeleteMultipleItemsButton()
 
         }
 
@@ -84,15 +86,18 @@ class ContactsFragment:Fragment() {
             buttonBackNavigation.setOnClickListener {
                 it.findNavController().popBackStack()
             }
-            if (recadapter.isSelectionOn){
-                binding.buttonDeleteSelectedContacts.visibility= View.VISIBLE
-                binding.buttonDeleteSelectedContacts.setOnClickListener {
-                    viewModel.onDeleteSelectedItems()
-                }
-            }else binding.buttonDeleteSelectedContacts.visibility= View.GONE
+
         }
 
 
+    }
+    private fun setDeleteMultipleItemsButton(){
+        if (recadapter.isSelectionOn){
+            binding.buttonDeleteSelectedContacts.visibility= View.VISIBLE
+            binding.buttonDeleteSelectedContacts.setOnClickListener {
+                viewModel.onDeleteSelectedItems()
+            }
+        }else binding.buttonDeleteSelectedContacts.visibility= View.GONE
     }
     private fun setItemTouchHelper(){
         val callback :SwipeToDeleteCallback
@@ -135,6 +140,10 @@ class ContactsFragment:Fragment() {
                     viewModel.onItemSelection(contact)
                 }
 
+                override fun onCancelSnackBar(position: Int,contact: Contact) {
+                    showSnackbar(position,contact)
+                }
+
 
             },
             onMultiselectItemListener = object : OnMultiselectItemListener {
@@ -152,6 +161,11 @@ class ContactsFragment:Fragment() {
 
         binding.recycleViewContacts.adapter = recadapter
     }
+   private fun showSnackbar(position:Int,contact: Contact){
+        Snackbar.make(requireView(),"contact deleted",3000)
+            .setAction("cancel", View.OnClickListener { viewModel.restoreContact(position,contact) })
+            .show()
+   }
 
     private fun setAlertDialog() {
 
@@ -171,7 +185,7 @@ class ContactsFragment:Fragment() {
 
                 )
 
-                viewModel.addData(contact)
+                viewModel.addContact(contact)
 
                 dialog.cancel()
             }

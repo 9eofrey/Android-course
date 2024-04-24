@@ -40,7 +40,7 @@
         android:layout_marginTop="@dimen/normal_margin"
         android:text="@string/settings"
         android:textColor="@color/white_for_text"
-        android:textSize="37sp"
+        android:textSize="@dimen/main_heading_text"
         app:layout_constraintStart_toStartOf="parent"
 
         app:layout_constraintTop_toTopOf="parent" />
@@ -75,7 +75,7 @@
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/log_out_button"
-        android:layout_width="@dimen/_119dp"
+        android:layout_width="@dimen/button_width"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/normal_margin"
         android:layout_marginEnd="@dimen/normal_margin"
@@ -98,7 +98,7 @@
         android:layout_height="wrap_content"
         android:text="@string/job"
         android:textColor="@color/white_for_text"
-        android:textSize="14sp"
+        android:textSize="@dimen/plain_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/profile_name_text"
@@ -111,7 +111,7 @@
         android:layout_height="wrap_content"
         android:text="@string/adress"
         android:textColor="@color/white_for_text"
-        android:textSize="14sp"
+        android:textSize="@dimen/plain_text"
 
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

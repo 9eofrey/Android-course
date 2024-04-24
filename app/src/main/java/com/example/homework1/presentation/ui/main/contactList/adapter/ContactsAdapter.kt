@@ -15,16 +15,17 @@ import com.example.homework1.presentation.ui.main.contactList.ContactsFragment
 import com.example.homework1.presentation.ui.main.contactList.interfaces.OnContactItemListener
 import com.example.homework1.presentation.ui.main.contactList.interfaces.OnMultiselectItemListener
 import com.example.homework1.presentation.uitl.ext.imageLibs
+import com.google.android.material.snackbar.Snackbar
 
 class ContactsAdapter(
     val onContactItemListener: OnContactItemListener,
     val onMultiselectItemListener: OnMultiselectItemListener,
 
-) : ListAdapter<Contact, ContactsAdapter.MainViewHolder>(
+    ) : ListAdapter<Contact, ContactsAdapter.MainViewHolder>(
     ContactsDiffCallback()
 ) {
 
-     var isSelectionOn: Boolean = false
+    var isSelectionOn: Boolean = false
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainViewHolder {
@@ -69,6 +70,7 @@ class ContactsAdapter(
         abstract fun bind(contact: Contact)
     }
 
+
     inner class ViewHolder(private val binding: ItemBinding) : MainViewHolder(binding.root) {
         override fun bind(contact: Contact) {
 
@@ -76,10 +78,14 @@ class ContactsAdapter(
             with(binding) {
                 buttonRemoveContact.setOnClickListener {
                     onContactItemListener.onDeleteItem(getItem(bindingAdapterPosition))
+                    onContactItemListener.onCancelSnackBar(bindingAdapterPosition,getItem(bindingAdapterPosition))
                 }
+
                 root.setOnClickListener {
                     onContactItemListener.onItemCLick(bindingAdapterPosition, contact)
                 }
+
+
 
 
 
@@ -102,6 +108,11 @@ class ContactsAdapter(
 
                 // TODO add text and picture(with Glide)
                 isCheckedCheckbox.isChecked = contact.isChecked
+                isCheckedCheckbox.setOnClickListener {
+
+                    onMultiselectItemListener.onItemSelectionClick(contact)
+                }
+
                 itemView.setOnClickListener {
                     onMultiselectItemListener.onItemSelectionClick(contact)
                 }

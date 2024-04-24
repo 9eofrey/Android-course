@@ -1,4 +1,4 @@
-package com.example.homework1.presentation.ui.main.contactDeteil
+package com.example.homework1.presentation.ui.main.contactDetail
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -19,7 +19,6 @@ class ContactDetailFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        // Inflate the layout for this fragment
         binding = FragmentContactBinding.inflate(inflater, container, false)
 
         binding.navigateBackButton.setOnClickListener {

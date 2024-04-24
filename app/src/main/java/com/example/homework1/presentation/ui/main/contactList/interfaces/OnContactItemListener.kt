@@ -7,5 +7,7 @@ interface OnContactItemListener {
     fun onDeleteItem(contact: Contact)
     fun onLongItemClick(contact: Contact)
 
+    fun onCancelSnackBar(position: Int,contact: Contact)
+
 
 }

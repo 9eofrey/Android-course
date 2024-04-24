@@ -20,7 +20,12 @@ class ContactViewModel : ViewModel() {
             ContactList.getContactList()
     }
 
-    fun addData(contact: Contact) {
+    fun restoreContact(position: Int, contact: Contact) {
+        if (_contacts.value!!.contains(contact)){
+            return
+        }else updateLiveDate { add(position,contact) }
+    }
+    fun addContact(contact: Contact){
         updateLiveDate { add(contact) }
     }
 
@@ -38,6 +43,7 @@ class ContactViewModel : ViewModel() {
 
     }
 
+
     fun onSelectionMode(isSelectionModeEnabled: Boolean) {
         _isSelectedModeOn.value = isSelectionModeEnabled
     }
@@ -45,13 +51,8 @@ class ContactViewModel : ViewModel() {
     fun onDeleteSelectedItems() {
         _contacts.value = _contacts.value?.filterNot { it.isChecked }
     }
-    fun deleteOnPosition(position: Int){
-        if (position==-1){
-            return
-        }else {
-            updateLiveDate { removeAt(position) }
-        }
-    }
+
+
 
 
     fun onItemSelection(contact: Contact) {
