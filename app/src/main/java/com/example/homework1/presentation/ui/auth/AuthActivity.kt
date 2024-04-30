@@ -10,6 +10,10 @@ import com.example.homework1.Constants
 import com.example.homework1.R
 import com.example.homework1.databinding.ActivityAuthBinding
 import com.example.homework1.presentation.ui.main.MainActivity
+import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 
 const val KEY_NAME = "ac_name"
 const val keyPass = "ac_pass"
@@ -17,30 +21,15 @@ const val keyBool = "is_checked"
 
 
 class AuthActivity : AppCompatActivity() {
-
-    private val sharedPref: SharedPreferences by lazy {
-        getSharedPreferences(Constants.MY_PREFS, MODE_PRIVATE)
-    }
     private val binding: ActivityAuthBinding by lazy {
         ActivityAuthBinding.inflate(layoutInflater)
     }
-    private val viewModel: AuthViewModel by viewModels()
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-
-//        handleStartActivity()
         setListeners()
     }
 
-    private fun handleStartActivity() {
-        if (getDataOfRememberMe()) {
-            val intent = Intent(this, MainActivity::class.java)
-            intent.putExtra(Constants.USERNAME, getAcName())
-            startActivity(intent)
-        }
-    }
 
     private fun setListeners() {
         binding.registerButton.setOnClickListener { onRegisterUser() }
@@ -52,61 +41,38 @@ class AuthActivity : AppCompatActivity() {
         // setting actions on click
 
         //for validation
-        if ("sdfsf".matches(Patterns.EMAIL_ADDRESS.toRegex())) {
+        if (binding.emailEditText.text!!.matches(Patterns.EMAIL_ADDRESS.toRegex())) {
+            when {
+                // checking validation
+                binding.emailEditText.length() == 0 -> binding.emailEditText.error =
+                    getString(R.string.email_error)
 
-        }
-        when {
-            // checking validation
-            binding.emailEditText.length() == 0 -> binding.emailEditText.error =
-                getString(R.string.email_error)
 
-            binding.passwordEditText.length() == 0 -> binding.passwordEditText.error =
-                "field should be filled"          // TODO: use resources
+                binding.passwordEditText.length() == 0 -> binding.passwordEditText.error =
+                    "field should be filled"          // TODO: use resources
 
-            binding.passwordEditText.length() < 8 -> binding.passwordEditText.error =
-                "password should be at least 8 symbols"
+                binding.passwordEditText.length() < 8 -> binding.passwordEditText.error =
+                    "password should be at least 8 symbols"
 
-            else -> {
-                // putting data into MainActivity
+                else -> {
 
-                viewModel.addData(binding.emailEditText.text.toString())
-
-                val intent = Intent(this, MainActivity::class.java)
-                intent.putExtra(Constants.USERNAME, binding.emailEditText.text.toString())
-                startActivity(intent)
-//                if (binding.rememberCheckbox.isChecked) {
-//                    saveData(
-//                        binding.emailEditText.text.toString(),
-//                        binding.passwordEditText.text.toString(),
-//                        true
-//                    )
-//                    //Log.d("save data", "$isCheck")
+                    val intent = Intent(this, MainActivity::class.java)
+                    intent.putExtra(Constants.USERNAME, binding.emailEditText.text.toString())
+                    startActivity(intent)
+                }
             }
-
-//
-            // intent.putExtra(Constants.username, binding.emailEditText.text.toString())
-            //   intent.putExtra(Constants.isChecked, isCheck) // TODO: need?
-            // startActivity(intent)
-            // }
         }
+
+    }
+    private fun registerUser(){
+        val interceptor =HttpLoggingInterceptor()
+        interceptor.level = HttpLoggingInterceptor.Level.BODY
+        val client = OkHttpClient.Builder().addInterceptor(interceptor).build()
+        val retrofit =Retrofit.Builder().baseUrl("http://178.63.9.114:7777/api/").client(client).addConverterFactory(GsonConverterFactory.create()).build()
     }
 
-    private fun saveData(acName: String, acPassword: String, is_checked: Boolean) {
-        sharedPref.edit()
-            .putString(KEY_NAME, acName)
-            .putString(keyPass, acPassword)
-            .putBoolean(keyBool, is_checked)
-            .apply()
-    }
-
-    private fun getAcName() = sharedPref.getString(KEY_NAME, " ")
-
-
-    private fun getDataOfRememberMe(): Boolean { // TODO: change name
-        return sharedPref.getBoolean(keyBool, false)
-    }
-
-    private fun getAcPass(): String? {
-        return sharedPref.getString(keyPass, " ")
-    }
 }
+
+
+
+
