@@ -7,7 +7,8 @@
     <string name="check_box_hint">remember me</string>
     <string name="password_edit_text_hint">password</string>
     <string name="register_button_text">register</string>
-    <string name="email_error">field should be filled</string>
+    <string name="empty_field_email_error">field should be filled</string>
+    <string name="invalid_email_error">invalid email</string>
     <string name="instructions">Fill out the profile and go to the application!</string>
     <string name="greeting">Let\'s get acquainted</string>
     <string name="instructions_name_text">E-mail</string>
@@ -32,8 +33,17 @@
     <string name="edit_text_address_hint">Address</string>
     <string name="edit_text_date_of_birth_hint">Date of birth</string>
     <string name="button_save_contact_text">SAVE</string>
-  <!-- sign up extended screen-->
+    <!-- sign up extended screen-->
     <string name="screen_main_label_text">Your profile data</string>
     <string name="button_cancel_text">Cancel</string>
     <string name="button_forward_text">FORWARD</string>
+
+    <!-- login fragment-->
+    <string name="title_text">Hello!</string>
+    <string name="login_instructions_text">Enter your email and password below</string>
+    <string name="restore_password_text">Forgot your password?</string>
+    <string name="register_instructions_text" >Don\'t have an account?</string>
+    <string name="login_button_text">LOGIN</string>
+    <string name="sign_up_label_text">Sign up</string>
+
 </resources>

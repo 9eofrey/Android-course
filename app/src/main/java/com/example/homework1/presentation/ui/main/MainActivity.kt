@@ -9,9 +9,7 @@ import com.example.homework1.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() { // TODO: use binding
     private lateinit var navController: NavController
-    private val binding : ActivityMainBinding by lazy {
-        ActivityMainBinding.inflate(layoutInflater)
-    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)

@@ -9,8 +9,9 @@
     <string name="instructions_name_text">E-mail</string>
     <string name="password_edit_text_hint">Пароль</string>
     <string name="register_button_text">зареєструватися</string>
-    <string name="email_error">поля повинні бути заповнені</string>
+    <string name="empty_field_email_error">поля повинні бути заповнені</string>
     <string name="google">Google</string>
+    <string name="invalid_email_error">невірний еmail</string>
 
    <!-- main profile screen-->
     <string name="settings">Налаштування</string>
@@ -34,5 +35,13 @@
     <string name="screen_main_label_text">Дані вашого профілю</string>
     <string name="button_cancel_text">Скасувати</string>
     <string name="button_forward_text">ДАЛІ</string>
+
+    <!-- login fragment-->
+    <string name="title_text">Привіт!</string>
+    <string name="login_instructions_text">Введіть свій email та пароль нижче</string>
+    <string name="restore_password_text">Забули свій пароль?</string>
+    <string name="register_instructions_text" >Немає облікового запису?</string>
+    <string name="login_button_text">УВІЙТИ</string>
+    <string name="sign_up_label_text">Зареєструватись</string>
 
 </resources>

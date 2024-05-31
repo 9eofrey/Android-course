@@ -61,6 +61,7 @@
             app:layout_constraintTop_toBottomOf="@id/text_view_instructions"
             android:layout_marginTop="24dp">
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/text_field_username"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:layout_constraintStart_toStartOf="parent"
@@ -83,6 +84,7 @@
         app:layout_constraintTop_toBottomOf="@id/text_input_layout_username"
         android:layout_marginTop="12dp">
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/text_field_phone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"

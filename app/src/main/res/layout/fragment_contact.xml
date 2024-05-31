@@ -22,7 +22,7 @@
         android:layout_height="wrap_content"
         android:text="Profile"
         android:textColor="@color/white_for_text"
-        android:textSize="@dimen/_31sp"
+        android:textSize="@dimen/main_heading_text"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"

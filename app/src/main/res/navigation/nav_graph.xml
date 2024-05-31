@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/hostPagerFragment">
+    app:startDestination="@id/signUpExtendedFragment">
     <fragment
         android:id="@+id/hostPagerFragment"
         android:name="com.example.homework1.presentation.ui.main.pager.HostPagerFragment"
@@ -12,6 +12,10 @@
         <action
             android:id="@+id/action_hostPagerFragment_to_contactDetailFragment"
             app:destination="@id/contactDetailFragment" />
+        <argument
+            android:name="name"
+            app:argType="string"
+            android:defaultValue="undefined" />
     </fragment>
     <fragment
         android:id="@+id/contactDetailFragment"
@@ -20,5 +24,14 @@
         <argument
             android:name="data"
             app:argType="com.example.homework1.data.Contact" />
+    </fragment>
+    <fragment
+        android:id="@+id/signUpExtendedFragment"
+        android:name="com.example.homework1.presentation.ui.auth.SignUpExtendedFragment"
+        android:label="fragment_sign_up_extended"
+        tools:layout="@layout/fragment_sign_up_extended" >
+        <action
+            android:id="@+id/action_signUpExtendedFragment_to_hostPagerFragment"
+            app:destination="@id/hostPagerFragment" />
     </fragment>
 </navigation>

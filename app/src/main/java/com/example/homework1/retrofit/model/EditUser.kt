@@ -1,10 +1,8 @@
 package com.example.homework1.retrofit.model
 
-data class AuthUser(
-    val email:String,
-    val password:String,
+data class EditUser(
     val name:String?,
-    val phone:Int?,
+    val phone:String?,
     val address:String?,
     val career:String?,
     val birthday:Int?,
@@ -12,5 +10,5 @@ data class AuthUser(
     val instagram:String?,
     val twitter:String?,
     val linkedin:String?,
-    val image:String?
 )
+
