@@ -4,7 +4,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Patterns
 import androidx.appcompat.app.AppCompatActivity
-import com.example.homework1.Constants
 import com.example.homework1.R
 import com.example.homework1.databinding.ActivityAuthBinding
 import com.example.homework1.presentation.ui.main.MainActivity
@@ -46,19 +45,19 @@ class AuthActivity : AppCompatActivity() {
         if (binding.emailEditText.text!!.matches(Patterns.EMAIL_ADDRESS.toRegex())) {
             when {
                 // checking validation
-                binding.emailEditText.length() == 0 -> binding.emailEditText.error =
+                binding.emailEditText.text!!.isBlank() -> binding.emailEditText.error =
                     getString(R.string.empty_field_email_error)
 
 
-                binding.passwordEditText.length() == 0 -> binding.passwordEditText.error =
-                    "field should be filled"          // TODO: use resources
+                binding.passwordEditText.text!!.isBlank() -> binding.passwordEditText.error =
+                   getString(R.string.empty_field_password_error)
 
                 binding.passwordEditText.length() < 8 -> binding.passwordEditText.error =
-                    "password should be at least 8 symbols"
+                    getString(R.string.invalid_length_password_error)
 
                 else -> {
                     CoroutineScope(Dispatchers.IO).launch {
-                        val retrofit =registerUser()
+                        val retrofit =getRetrofit()
                         val requestListener =retrofit.create(WebRequestListener::class.java)
                        val response=  requestListener.authorizeUser(AuthUser(binding.emailEditText.text.toString(),binding.passwordEditText.text.toString(),null,null,null,null,null,null,null,null,null,null))
                         runOnUiThread {
@@ -79,7 +78,7 @@ class AuthActivity : AppCompatActivity() {
         }else{ binding.emailEditText.error =getString(R.string.invalid_email_error)}
 
     }
-    fun registerUser():Retrofit{
+    fun getRetrofit():Retrofit{
         val interceptor =HttpLoggingInterceptor()
         interceptor.level = HttpLoggingInterceptor.Level.BODY
         val client = OkHttpClient.Builder().addInterceptor(interceptor).build()

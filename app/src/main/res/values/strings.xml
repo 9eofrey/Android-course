@@ -8,6 +8,8 @@
     <string name="password_edit_text_hint">password</string>
     <string name="register_button_text">register</string>
     <string name="empty_field_email_error">field should be filled</string>
+    <string name="empty_field_password_error">field should be filled</string>
+    <string name="invalid_length_password_error">password length should be at least 8 symbols</string>
     <string name="invalid_email_error">invalid email</string>
     <string name="instructions">Fill out the profile and go to the application!</string>
     <string name="greeting">Let\'s get acquainted</string>
