@@ -28,7 +28,9 @@ class SignUpExtendedFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-       editUserData()
+      binding.buttonForward.setOnClickListener {
+          editUserData()
+      }
     }
     private fun editUserData(){
       val retrofit =  AuthActivity().getRetrofit()
@@ -36,10 +38,9 @@ class SignUpExtendedFragment : Fragment() {
         CoroutineScope(Dispatchers.IO).launch{
             val response = requestListener.editUser(EditUser(binding.textFieldUsername.text.toString(),binding.textFieldPhone.text.toString(),null,null,null,null,null,null,null,))
             if (response.status =="success"){
-                binding.buttonForward.setOnClickListener {
-                    findNavController().navigate(R.id.action_signUpExtendedFragment_to_hostPagerFragment)
-                }
+                findNavController().navigate(R.id.action_signUpExtendedFragment_to_hostPagerFragment)
             }
+
 
         }
 

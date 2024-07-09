@@ -15,6 +15,9 @@
     <string name="greeting">Let\'s get acquainted</string>
     <string name="instructions_name_text">E-mail</string>
     <string name="google">Google</string>
+    <string name="terms_text">By clicking Register you agree to our Terms and Conditions</string>
+    <string name="for_registered_text">Already have an account?</string>
+    <string name="sign_in_clickable_text">Sign in</string>
 
     <!-- main profile screen -->
     <string name="settings">Settings</string>

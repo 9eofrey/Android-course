@@ -9,6 +9,7 @@ import com.example.homework1.databinding.ActivityAuthBinding
 import com.example.homework1.presentation.ui.main.MainActivity
 import com.example.homework1.retrofit.WebRequestListener
 import com.example.homework1.retrofit.model.AuthUser
+import com.example.homework1.retrofit.model.ServerResponse
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -38,7 +39,7 @@ class AuthActivity : AppCompatActivity() {
     }
 
     //Todo : export validation to another file
-    private fun onRegisterUser() { // TODO: read about scope function with
+    private fun onRegisterUser(){ // TODO: read about scope function with
         // setting actions on click
 
         //for validation
@@ -59,13 +60,17 @@ class AuthActivity : AppCompatActivity() {
                     CoroutineScope(Dispatchers.IO).launch {
                         val retrofit =getRetrofit()
                         val requestListener =retrofit.create(WebRequestListener::class.java)
-                       val response=  requestListener.authorizeUser(AuthUser(binding.emailEditText.text.toString(),binding.passwordEditText.text.toString(),null,null,null,null,null,null,null,null,null,null))
-                        runOnUiThread {
-                            if (response.status=="success"){
-                                val intent =Intent(this@AuthActivity,MainActivity::class.java)
-                                startActivity(intent)
+                        val result =authorizeUser()
+                        result.onSuccess {
+                            runOnUiThread{
+                                val intent = Intent(this@AuthActivity,MainActivity::class.java)
+                                    startActivity(intent)
+
                             }
                         }
+
+
+
                     }
 
 
@@ -79,11 +84,20 @@ class AuthActivity : AppCompatActivity() {
 
     }
     fun getRetrofit():Retrofit{
+
         val interceptor =HttpLoggingInterceptor()
         interceptor.level = HttpLoggingInterceptor.Level.BODY
         val client = OkHttpClient.Builder().addInterceptor(interceptor).build()
         val retrofit =Retrofit.Builder().baseUrl("http://178.63.9.114:7777/api/").client(client).addConverterFactory(GsonConverterFactory.create()).build()
+
         return retrofit
+    }
+    suspend fun authorizeUser():Result<ServerResponse>{
+        val retrofit = getRetrofit()
+      val requestListener=  retrofit.create(WebRequestListener::class.java)
+        return runCatching {
+            requestListener.authorizeUser(AuthUser(binding.emailEditText.text.toString(),binding.passwordEditText.text.toString(),null,null,null,null,null,null,null,null,null,null))
+        }
     }
 
 }
