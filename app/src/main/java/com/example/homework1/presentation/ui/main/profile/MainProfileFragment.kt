@@ -10,7 +10,6 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import com.example.homework1.Constants
 import com.example.homework1.databinding.FragmentMainProfileBinding
-import com.example.homework1.presentation.ui.auth.AuthViewModel
 import com.example.homework1.presentation.ui.main.pager.HostPagerFragment
 import com.example.homework1.presentation.ui.main.pager.HostPagerFragmentArgs
 import com.example.homework1.presentation.uitl.ext.imageLibs
@@ -19,14 +18,14 @@ import java.util.Locale
 
 class MainProfileFragment : Fragment() {
     private lateinit var binding: FragmentMainProfileBinding
-    private val viewModel: AuthViewModel by viewModels()
+
     private val args:HostPagerFragmentArgs by navArgs()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View {
         binding = FragmentMainProfileBinding.inflate(inflater, container, false)
-        Log.d("Mytag", "value ${viewModel.email.value.toString()}")
+
 
         binding.viewContactsButton.setOnClickListener {
             (parentFragment as HostPagerFragment).getViewPager().currentItem = 1

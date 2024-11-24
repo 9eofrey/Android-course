@@ -1,21 +1,16 @@
 package com.example.homework1.presentation.ui.auth
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.fragment.findNavController
-import com.example.homework1.R
+
 import com.example.homework1.databinding.FragmentSignUpExtendedBinding
-import com.example.homework1.retrofit.WebRequestListener
-import com.example.homework1.retrofit.model.EditUser
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 
 
-class SignUpExtendedFragment : Fragment() {
+class SignUpExtendedFragment :Fragment () {
   private lateinit var binding:FragmentSignUpExtendedBinding
 
 
@@ -29,22 +24,10 @@ class SignUpExtendedFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
       binding.buttonForward.setOnClickListener {
-          editUserData()
+        Log.d("click","Clicked!")
       }
     }
-    private fun editUserData(){
-      val retrofit =  AuthActivity().getRetrofit()
-       val requestListener= retrofit.create(WebRequestListener::class.java)
-        CoroutineScope(Dispatchers.IO).launch{
-            val response = requestListener.editUser(EditUser(binding.textFieldUsername.text.toString(),binding.textFieldPhone.text.toString(),null,null,null,null,null,null,null,))
-            if (response.status =="success"){
-                findNavController().navigate(R.id.action_signUpExtendedFragment_to_hostPagerFragment)
-            }
 
-
-        }
-
-    }
 
 
 }

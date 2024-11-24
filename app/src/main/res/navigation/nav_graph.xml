@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/signUpExtendedFragment">
+    app:startDestination="@id/authFragment">
     <fragment
         android:id="@+id/hostPagerFragment"
         android:name="com.example.homework1.presentation.ui.main.pager.HostPagerFragment"
@@ -34,4 +34,35 @@
             android:id="@+id/action_signUpExtendedFragment_to_hostPagerFragment"
             app:destination="@id/hostPagerFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.example.homework1.presentation.ui.login.LoginFragment"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_loginFragment_to_hostPagerFragment"
+            app:destination="@id/hostPagerFragment" />
+        <argument
+            android:name="email"
+            app:argType="string"
+            android:defaultValue="name" />
+        <action
+            android:id="@+id/action_loginFragment_to_authFragment"
+            app:destination="@id/authFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/authFragment"
+        android:name="com.example.homework1.presentation.ui.auth.AuthFragment"
+        android:label="AuthFragment"
+        tools:layout="@layout/fragment_auth"
+        >
+
+        <action
+            android:id="@+id/action_authFragment_to_signUpExtendedFragment"
+            app:destination="@id/signUpExtendedFragment" />
+        <action
+            android:id="@+id/action_authFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
+
 </navigation>

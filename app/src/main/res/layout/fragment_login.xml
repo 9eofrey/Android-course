@@ -76,14 +76,13 @@
         android:layout_marginTop="6dp"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginStart="6dp"
-        android:text="remember me"
+        android:text="@string/check_box_hint"
         android:textColor="@color/edit_text_name"
         app:layout_constraintTop_toBottomOf="@id/text_input_layout_password" />
 
 <androidx.appcompat.widget.AppCompatCheckedTextView
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-
     app:layout_constraintTop_toBottomOf="@id/text_input_layout_password"
     android:layout_marginTop="20dp"
     app:layout_constraintEnd_toEndOf="parent"
@@ -94,11 +93,12 @@
     android:textColor="@color/white_for_text" />
 
     <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/button_login"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
         app:layout_constraintBottom_toTopOf="@id/text_view_register_instructions"
-        android:text="login"
+        android:text="@string/login_button_text"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
         android:textColor="@color/white_for_text"
@@ -120,10 +120,11 @@
         />
 
     <TextView
-        android:id="@+id/text_view_sign_up"
+        android:id="@+id/clickable_text_view_sign_up"
         android:layout_width="50dp"
         android:layout_height="18dp"
         android:layout_marginBottom="6dp"
+        android:clickable="true"
         android:text="@string/sign_up_label_text"
         android:textColor="@color/white_for_text"
         app:layout_constraintBottom_toBottomOf="parent"
