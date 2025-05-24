@@ -44,6 +44,7 @@
             android:id="@+id/text_input_edit_text_email"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:textColor="@color/white_for_text"
             android:textColorHint="@color/edit_text_name"
             android:hint="@string/edit_text_email_hint">
 
@@ -62,6 +63,8 @@
             android:id="@+id/text_input_edit_text_password"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:textColorHint="@color/edit_text_name"
+            android:textColor="@color/white_for_text"
             android:hint="@string/password_edit_text_hint"
             android:inputType="textPassword">
 

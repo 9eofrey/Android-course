@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.homework1.R
 import com.example.homework1.databinding.FragmentLoginBinding
@@ -19,6 +20,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import okio.IOException
 import retrofit2.HttpException
 
@@ -46,20 +48,23 @@ class LoginFragment : Fragment() {
                         getString(R.string.empty_field_password_error)
 
                     else->{
-                        CoroutineScope(Dispatchers.IO).launch {
+                        lifecycleScope.launch {
                             runCatching {
-                                RetrofitInstance.api.loginUser(LoginUser(binding.textInputEditTextEmail.text.toString(),binding.textInputEditTextPassword.text.toString()))
+                                withContext(Dispatchers.IO){
+                                    RetrofitInstance.api.loginUser(LoginUser(binding.textInputEditTextEmail.text.toString(),binding.textInputEditTextPassword.text.toString()))
+                                }
                             }.onSuccess {
                                 Log.d("response","success login")
                                 findNavController().navigate(R.id.action_loginFragment_to_hostPagerFragment)
+
                             }.onFailure {
                                 exception -> when(exception){
-                                    is IOException -> requireActivity().runOnUiThread { Toast.makeText(
+                                    is IOException -> Toast.makeText(
                                         context, "check your internet connection",Toast.LENGTH_LONG
-                                    ).show() }
-                                    is HttpException -> requireActivity().runOnUiThread { Toast.makeText(
+                                    ).show()
+                                    is HttpException ->   Toast.makeText(
                                         context, "server error",Toast.LENGTH_LONG
-                                    ).show() }
+                                    ).show()
                                 }
                             }
                         }

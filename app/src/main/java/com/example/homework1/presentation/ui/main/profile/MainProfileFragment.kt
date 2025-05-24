@@ -19,7 +19,7 @@ import java.util.Locale
 class MainProfileFragment : Fragment() {
     private lateinit var binding: FragmentMainProfileBinding
 
-    private val args:HostPagerFragmentArgs by navArgs()
+   // private val args:HostPagerFragmentArgs by navArgs()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
@@ -35,33 +35,6 @@ class MainProfileFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        with(binding) {
-            profileImage.imageLibs("https://static.thenounproject.com/png/3237155-200.png")
-         //   val email = activity?.intent?.getStringExtra().orEmpty()
 
-            binding.profileNameText.text = args.name
-        }
     }
-
-    //Todo : export logic to another file
-//    private fun setUserName(email: String): String {
-//        var str = ""
-//
-//        if (email.contains(".")) {
-//            val elements = email.split(".")
-//            elements.forEach {
-//                val tmp = it.replaceFirstChar { ch ->
-//                    if (ch.isLowerCase()) ch.titlecase(Locale.getDefault()) else ch.toString()
-//                }
-//                str += "$tmp "
-//            }
-//            str.trim()
-//        } else {
-//            str = email
-//        }
-//
-//        return str
-//    }
-
-
 }

@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.homework1.R
 import com.example.homework1.databinding.FragmentAuthBinding
@@ -17,6 +18,7 @@ import com.example.homework1.retrofit.model.AuthUser
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import okio.IOException
 import retrofit2.HttpException
 
@@ -49,6 +51,7 @@ class AuthFragment : Fragment() {
 
 
     }
+
     private fun onRegisterUser() {
         // validation
         if (binding.emailEditText.text!!.matches(Patterns.EMAIL_ADDRESS.toRegex())) {
@@ -66,55 +69,66 @@ class AuthFragment : Fragment() {
                     getString(R.string.invalid_length_password_error)
                 // requesting server for authentication
                 else -> {
-                   fetchData()
+                    fetchData()
                 }
             }
-        }else{binding.emailEditText.error = getString(R.string.invalid_email_error)}
-    }
-
-
-    private fun fetchData(){
-        CoroutineScope(Dispatchers.IO).launch {
-            runCatching {
-                RetrofitInstance.api.authorizeUser(
-                    AuthUser(
-                        binding.emailEditText.text.toString(),
-                        binding.passwordEditText.text.toString(),
-                        null,
-                        null,
-                        null,
-                        null,
-                        null,
-                        null,
-                        null,
-                        null,
-                        null,
-                        null
-                    )
-                )
-
-            }.onSuccess {
-
-                requireActivity().runOnUiThread {
-                    findNavController().navigate(R.id.action_authFragment_to_signUpExtendedFragment)
-                }
-
-            }.onFailure {
-                    exception -> when(exception) {
-                is  IOException -> requireActivity().runOnUiThread { Toast.makeText(context,
-                    "check internet connection",Toast.LENGTH_LONG
-                ).show() }
-                is  HttpException -> requireActivity().runOnUiThread { Toast.makeText(context,
-                    "server error",Toast.LENGTH_LONG
-                ).show() }
-
-            }
-            }
+        } else {
+            binding.emailEditText.error = getString(R.string.invalid_email_error)
         }
     }
 
 
+    private fun fetchData() {
+        lifecycleScope.launch {
+            runCatching {
+                withContext(Dispatchers.IO){
+                    RetrofitInstance.api.authorizeUser(
+                        AuthUser(
+                            binding.emailEditText.text.toString(),
+                            binding.passwordEditText.text.toString(),
+                            null,
+                            null,
+                            null,
+                            null,
+                            null,
+                            null,
+                            null,
+                            null,
+                            null,
+                            null
+                        )
+                    )
+                }
+
+            }.onSuccess {
+                findNavController().navigate(R.id.action_authFragment_to_signUpExtendedFragment)
+
+
+            }.onFailure { exception ->
+                when (exception) {
+                    is IOException ->
+                        Toast.makeText(
+                            context,
+                            "check internet connection", Toast.LENGTH_LONG
+                        ).show()
+
+                    is HttpException ->
+                        Toast.makeText(
+                            context,
+                            "server error", Toast.LENGTH_LONG
+                        ).show()
+
+
+                }
+            }
+
+        }
+
+    }
 }
+
+
+
 
 
 
